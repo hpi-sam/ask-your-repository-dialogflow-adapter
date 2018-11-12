@@ -1,0 +1,112 @@
+const GetArtefactRequest = {
+  responseId: '818525a4-7960-4071-8b41-ba30ea5ce86c',
+  queryResult: {
+    queryText: 'Need an image with tags whiteboard random blue',
+    parameters: {
+      DatePeriod: '',
+      Artefact: 'picture',
+      Tag: [
+        'whiteboard random blue',
+      ],
+    },
+    allRequiredParamsPresent: true,
+    fulfillmentText: 'Here is a list of your requested pictures',
+    fulfillmentMessages: [
+      {
+        text: {
+          text: [
+            'Here is a list of your requested pictures',
+          ],
+        },
+      },
+    ],
+    outputContexts: [
+      {
+        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/DatePeriod',
+        lifespanCount: 5,
+        parameters: {
+          'Artefact.original': 'image',
+          'Tag.original': 'whiteboard random blue',
+          'DatePeriod.original': '',
+          Tag: [
+            'whiteboard random blue',
+          ],
+          Artefact: 'picture',
+          DatePeriod: '',
+        },
+      },
+      {
+        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/Artefact',
+        lifespanCount: 5,
+        parameters: {
+          'Artefact.original': 'image',
+          'Tag.original': 'whiteboard random blue',
+          'DatePeriod.original': '',
+          Tag: [
+            'whiteboard random blue',
+          ],
+          Artefact: 'picture',
+          DatePeriod: '',
+        },
+      },
+      {
+        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/tag',
+        lifespanCount: 5,
+        parameters: {
+          'Artefact.original': 'image',
+          'Tag.original': 'whiteboard random blue',
+          'DatePeriod.original': '',
+          Tag: [
+            'whiteboard random blue',
+          ],
+          Artefact: 'picture',
+          DatePeriod: '',
+        },
+      },
+      {
+        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/generic',
+        lifespanCount: 4,
+        parameters: {
+          slack_user_id: 'UD3P98VK4',
+          slack_channel: 'DDXTDK42U',
+          'Artefact.original': 'image',
+          'Tag.original': 'whiteboard random blue',
+          'DatePeriod.original': '',
+          Tag: [
+            'whiteboard random blue',
+          ],
+          Artefact: 'picture',
+          DatePeriod: '',
+        },
+      },
+    ],
+    intent: {
+      name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e',
+      displayName: 'Get Artefacts',
+      endInteraction: true,
+    },
+    intentDetectionConfidence: 0.98,
+    diagnosticInfo: {
+      end_conversation: true,
+    },
+    languageCode: 'en',
+  },
+  originalDetectIntentRequest: {
+    payload: {
+      data: {
+        client_msg_id: '8f515399-3c3a-4f98-9ad3-6c38c061e510',
+        event_ts: '1542015512.001000',
+        channel: 'DDXTDK42U',
+        text: 'Need an image with tags whiteboard random blue',
+        type: 'message',
+        channel_type: 'im',
+        user: 'UD3P98VK4',
+        ts: '1542015512.001000',
+      },
+      source: 'slack_testbot',
+    },
+  },
+  session: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f',
+};
+
+export default GetArtefactRequest;
