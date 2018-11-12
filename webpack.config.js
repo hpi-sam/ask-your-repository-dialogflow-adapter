@@ -1,6 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -11,7 +10,7 @@ module.exports = {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [new FlowBabelWebpackPlugin()],
+
   module: {
     rules: [
       {
