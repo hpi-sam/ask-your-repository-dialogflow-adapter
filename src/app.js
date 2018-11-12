@@ -3,11 +3,7 @@ import express from 'express';
 import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, Image } from 'actions-on-google';
-import logger from './logger';
-
-// URLs for images used in card rich responses
-const architectureimage = 'https://cdn-images-1.medium.com/max/1600/1*TYRSuON0vVxy8olllrBVEw.png';
-const mindmapimage = 'https://www.zeitzuleben.de/zzlwp1892/wp-content/uploads/2001/02/Mind-Mapping-Aufbau-2.png';
+import ArtefactController from './controller/ArtefactController';
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,24 +14,24 @@ app.get('/', (req: Request, res: Response) => {
 
 const dialog = dialogflow();
 
+
+// function esraRequestGetLatest(conv, params) {
+//   // TODO: Request latest image from esra once an esra route is implemented for this.
+// }
+
 // Register handlers for Dialogflow intents
 
-dialog.intent('retrieve artifact', (conv, params) => {
-  logger.info(`parameters: ${conv.parameters}`);
-  logger.info(`Artifact: ${params.Artifact}`);
-  if (params.Artifact === 'Mindmap') {
-    conv.ask('Here is your Mindmap');
-    conv.ask(new Image({
-      url: mindmapimage,
-      alt: 'Your Mindmap',
-    }));
-  } else {
-    conv.ask('Here is your Architecture Sketch');
-    conv.ask(new Image({
-      url: architectureimage,
-      alt: 'Your Architecture Sketch',
-    }));
-  }
+dialog.intent('Get Artefacts', ArtefactController.getArtefacts);
+// dialog.intent('Get latest Artefact', esraRequestGetLatest);
+
+dialog.intent(['Get latest Artefact'], (conv, params) => {
+  conv.ask('The server can\'t do this yet but have a Cat instead!');
+  conv.ask(new Image({
+    url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
+    alt: 'A cat',
+  }));
+  conv.close('Thank you for testing the Ask your Repository bot.',
+    'Your request was identified as:\n', JSON.stringify(params));
 });
 
 app.post('/', dialog);
