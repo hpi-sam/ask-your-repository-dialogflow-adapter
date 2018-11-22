@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Image } from 'actions-on-google';
-import logger from './logger';
+import logger from '../logger';
 
 
 export default {
