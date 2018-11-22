@@ -15,10 +15,12 @@ export default {
         },
       });
       const { images } = response.data;
+      logger.info(JSON.stringify(images));
+      logger.info(images[0].file_url);
       if (images.length > 0) {
         conv.ask('Here is the best image we found for your request:');
         const image = new Image({
-          url: images[0].url,
+          url: images[0]._source.file_url, // eslint-disable-line
           alt: params.Artefact,
         });
         conv.ask(image);
