@@ -14,11 +14,15 @@ export default {
         },
       });
       const { images } = response.data;
-      conv.ask('Here is the best image we found for your request:');
-      conv.ask(new Image({
-        url: images[0].url,
-        alt: params.Artefact,
-      }));
+      if (images.length > 0) {
+        conv.ask('Here is the best image we found for your request:');
+        conv.ask(new Image({
+          url: images[0].url,
+          alt: params.Artefact,
+        }));
+      } else {
+        conv.ask('No image matched your serach criteria. We are sorry.');
+      }
       // conv.contexts.set('images', 5, images); // This doesn't work yet.
     } catch (e) {
       conv.ask('The server isn\'t up right now but have a Cat instead!');
