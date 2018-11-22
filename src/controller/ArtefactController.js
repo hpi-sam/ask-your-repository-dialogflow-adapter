@@ -20,7 +20,6 @@ export default {
         alt: params.Artefact,
       }));
       conv.contexts.set('images', 5, images);
-      conv.close();
     } catch (e) {
       conv.ask('The server isn\'t up right now but have a Cat instead!');
       conv.ask(new Image({

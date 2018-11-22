@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
+  res.send('Hello, this is tobito. /\n There isn\'t any content on this website.');
 });
 
 const dialog = dialogflow();
@@ -24,15 +24,12 @@ const dialog = dialogflow();
 dialog.intent('Get Artefacts', ArtefactController.getArtefacts);
 // dialog.intent('Get latest Artefact', esraRequestGetLatest);
 
-dialog.intent(['Get latest Artefact'], (conv, params) => {
+dialog.intent(['Get latest Artefact'], (conv) => {
   conv.ask('The server can\'t do this yet but have a Cat instead!');
   conv.ask(new Image({
     url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
     alt: 'A cat',
   }));
-  conv.close('Thank you for testing the Ask your Repository bot.',
-    'Your request was identified as:\n', JSON.stringify(params));
 });
-
 app.post('/', dialog);
 export default app;
