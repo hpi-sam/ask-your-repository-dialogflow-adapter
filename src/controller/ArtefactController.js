@@ -22,7 +22,7 @@ export default {
           alt: params.Artefact,
         });
         conv.ask(image);
-        logger.info(`Get Artefact - Responded with this image:\n${image}`);
+        logger.info(`Get Artefact - Responded with this image:\n${JSON.stringify(image)}`);
       } else {
         conv.ask('No image matched your serach criteria. We are sorry.');
       }
