@@ -4,12 +4,14 @@ import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, Image } from 'actions-on-google';
 import ArtefactController from './controller/ArtefactController';
+import logger from './logger';
 
 const app = express();
 app.use(bodyParser.json());
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, this is tobito. /\n There isn\'t any content on this website.');
+  logger.info('received GET /');
 });
 
 const dialog = dialogflow();
@@ -30,6 +32,7 @@ dialog.intent(['Get latest Artefact'], (conv) => {
     url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
     alt: 'A cat',
   }));
+  logger.info('Get latest Artefact - Responded with cat image.');
 });
 app.post('/', dialog);
 export default app;

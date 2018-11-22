@@ -1,11 +1,12 @@
 import axios from 'axios';
-
 import { Image } from 'actions-on-google';
+import logger from './logger';
+
 
 export default {
   async getArtefacts(conv, params) {
     try {
-      const url = 'http://api.askir.me/images';
+      const url = 'https://api.askir.me/images';
       // type: params.Artefact
       // date: params.DatePeriod
       const response = await axios.get(url, {
@@ -16,10 +17,12 @@ export default {
       const { images } = response.data;
       if (images.length > 0) {
         conv.ask('Here is the best image we found for your request:');
-        conv.ask(new Image({
+        const image = new Image({
           url: images[0].url,
           alt: params.Artefact,
-        }));
+        });
+        conv.ask(image);
+        logger.info(`Get Artefact - Responded with this image:\n${image}`);
       } else {
         conv.ask('No image matched your serach criteria. We are sorry.');
       }
