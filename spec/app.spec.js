@@ -2,7 +2,45 @@
 import request from 'supertest';
 import nock from 'nock';
 import app from '../src/app';
-import GetArtefactRequest from './SampleRequests';
+import { GetArtefactRequest, GetLatestArtefactRequest } from './SampleRequests';
+
+function itShouldRespondOk(req) {
+  it('should respond with a 200.', (done) => {
+    request(app)
+      .post('/')
+      .send(req)
+      .expect(200)
+      .end(done);
+  });
+}
+
+function testAllCases(req) {
+  context('best case scenario', () => {
+    nock('https://api.askir.me')
+      .get('/images')
+      .reply(200, {
+        images: [{
+          id: '124',
+          url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
+        }],
+      });
+    itShouldRespondOk(req);
+  });
+  context('esra is down', () => {
+    nock('https://api.askir.me')
+      .get('/images')
+      .reply(502, 'Random answer I might get on a broken link or if the server is down.');
+    itShouldRespondOk(req);
+  });
+  context('no images match the search', () => {
+    nock('https://api.askir.me')
+      .get('/images')
+      .reply(200, {
+        images: [],
+      });
+    itShouldRespondOk(req);
+  });
+}
 
 describe('GET /', () => {
   it('should respond with a 200', (done) => {
@@ -15,44 +53,13 @@ describe('GET /', () => {
 
 describe('Intents', () => {
   describe('POST /', () => {
-    it('should respond with a 200 to a correct request', (done) => {
-      nock('http://api.askir.me')
-        .get('/images')
-        .reply(200, {
-          images:
-            [{
-              id: '124',
-              url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
-            }],
-        });
-      request(app)
-        .post('/')
-        .send(GetArtefactRequest)
-        .expect(200)
-        .end(done);
+    context('Get Artefacts Request', () => {
+      const req = GetArtefactRequest;
+      testAllCases(req);
     });
-    it('should respond with a 200 even if the server is down.', (done) => {
-      nock('http://api.askir.me')
-        .get('/images')
-        .reply(502, 'Random answer I might get on a broken link or if the server is down.');
-      request(app)
-        .post('/')
-        .send(GetArtefactRequest)
-        .expect(200)
-        .end(done);
-    });
-    it('should respond with a 200 when no images match the search', (done) => {
-      nock('http://api.askir.me')
-        .get('/images')
-        .reply(200, {
-          images:
-            [],
-        });
-      request(app)
-        .post('/')
-        .send(GetArtefactRequest)
-        .expect(200)
-        .end(done);
+    context('Get latest Artefact Request', () => {
+      const req = GetLatestArtefactRequest;
+      testAllCases(req);
     });
   });
 });
