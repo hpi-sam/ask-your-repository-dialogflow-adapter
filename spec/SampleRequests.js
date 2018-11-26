@@ -1,112 +1,77 @@
-const GetArtefactRequest = {
-  responseId: '818525a4-7960-4071-8b41-ba30ea5ce86c',
+export const GetArtefactRequest = {
+  responseId: '50caa4a9-7017-4443-9b67-9e0190fccb9d',
   queryResult: {
-    queryText: 'Need an image with tags whiteboard random blue',
-    parameters: {
-      DatePeriod: '',
-      Artefact: 'picture',
-      Tag: [
-        'whiteboard random blue',
-      ],
-    },
+    queryText: 'get me an image tagged blue white yellow',
+    parameters: { DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'] },
     allRequiredParamsPresent: true,
-    fulfillmentText: 'Here is a list of your requested pictures',
-    fulfillmentMessages: [
-      {
-        text: {
-          text: [
-            'Here is a list of your requested pictures',
-          ],
-        },
+    outputContexts: [{
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/date-period',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '',
       },
-    ],
-    outputContexts: [
-      {
-        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/DatePeriod',
-        lifespanCount: 5,
-        parameters: {
-          'Artefact.original': 'image',
-          'Tag.original': 'whiteboard random blue',
-          'DatePeriod.original': '',
-          Tag: [
-            'whiteboard random blue',
-          ],
-          Artefact: 'picture',
-          DatePeriod: '',
-        },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/artifact',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '',
       },
-      {
-        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/Artefact',
-        lifespanCount: 5,
-        parameters: {
-          'Artefact.original': 'image',
-          'Tag.original': 'whiteboard random blue',
-          'DatePeriod.original': '',
-          Tag: [
-            'whiteboard random blue',
-          ],
-          Artefact: 'picture',
-          DatePeriod: '',
-        },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/tag',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '',
       },
-      {
-        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/tag',
-        lifespanCount: 5,
-        parameters: {
-          'Artefact.original': 'image',
-          'Tag.original': 'whiteboard random blue',
-          'DatePeriod.original': '',
-          Tag: [
-            'whiteboard random blue',
-          ],
-          Artefact: 'picture',
-          DatePeriod: '',
-        },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/images',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '',
       },
-      {
-        name: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/generic',
-        lifespanCount: 4,
-        parameters: {
-          slack_user_id: 'UD3P98VK4',
-          slack_channel: 'DDXTDK42U',
-          'Artefact.original': 'image',
-          'Tag.original': 'whiteboard random blue',
-          'DatePeriod.original': '',
-          Tag: [
-            'whiteboard random blue',
-          ],
-          Artefact: 'picture',
-          DatePeriod: '',
-        },
-      },
-    ],
-    intent: {
-      name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e',
-      displayName: 'Get Artefacts',
-      endInteraction: true,
-    },
-    intentDetectionConfidence: 0.98,
-    diagnosticInfo: {
-      end_conversation: true,
-    },
+    }],
+    intent: { name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e', displayName: 'Get Artefacts' },
+    intentDetectionConfidence: 1,
     languageCode: 'en',
   },
-  originalDetectIntentRequest: {
-    payload: {
-      data: {
-        client_msg_id: '8f515399-3c3a-4f98-9ad3-6c38c061e510',
-        event_ts: '1542015512.001000',
-        channel: 'DDXTDK42U',
-        text: 'Need an image with tags whiteboard random blue',
-        type: 'message',
-        channel_type: 'im',
-        user: 'UD3P98VK4',
-        ts: '1542015512.001000',
-      },
-      source: 'slack_testbot',
-    },
-  },
-  session: 'projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f',
+  originalDetectIntentRequest: { payload: {} },
+  session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
 };
-
-export default GetArtefactRequest;
+export const GetLatestArtefactRequest = {
+  responseId: 'd0450974-2fcd-4026-acd7-f91eb239e14d',
+  queryResult: {
+    queryText: 'get me the latest image',
+    parameters: { Artifact: 'picture' },
+    allRequiredParamsPresent: true,
+    fulfillmentMessages: [{ text: { text: [''] } }],
+    outputContexts: [{
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/date-period',
+      lifespanCount: 4,
+      parameters: {
+        'Artifact.original': 'image', 'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '', Artifact: 'picture',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/artifact',
+      lifespanCount: 4,
+      parameters: {
+        'Artifact.original': 'image', 'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '', Artifact: 'picture',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/tag',
+      lifespanCount: 4,
+      parameters: {
+        'Artifact.original': 'image', 'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '', Artifact: 'picture',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/images',
+      lifespanCount: 4,
+      parameters: {
+        'Artifact.original': 'image', 'Tag.original': 'blue white yellow', DatePeriod: '', Artefact: 'picture', Tag: ['blue white yellow'], 'Artefact.original': 'image', 'DatePeriod.original': '', Artifact: 'picture',
+      },
+    }],
+    intent: { name: 'projects/newagent-bdb60/agent/intents/b3911c39-201f-42ae-9886-eb1518d2a4ae', displayName: 'Get latest Artefact' },
+    intentDetectionConfidence: 0.71,
+    languageCode: 'en',
+  },
+  originalDetectIntentRequest: { payload: {} },
+  session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
+};
