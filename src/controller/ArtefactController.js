@@ -29,7 +29,7 @@ export default {
       }
       // conv.contexts.set('images', 5, images); // This doesn't work yet.
     } catch (e) {
-      logger.info('Cought some error');
+      logger.info(e, 'Cought some error');
       conv.ask('The server isn\'t up right now but have a Cat instead!');
       conv.ask(new Image({
         url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
