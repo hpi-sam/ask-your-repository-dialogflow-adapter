@@ -6,6 +6,7 @@ import logger from '../logger';
 export default {
   async getArtefacts(conv, params) {
     try {
+      logger.info(JSON.stringify(params));
       const url = 'https://api.askir.me/images';
       // type: params.Artefact
       // date: params.DatePeriod
@@ -19,7 +20,7 @@ export default {
       if (images.length > 0) {
         conv.ask('Here is the best image we found for your request:');
         const image = new Image({
-          url: images[0].url, // eslint-disable-line
+          url: images[0].url,
           alt: params.Artefact,
         });
         conv.ask(image);
@@ -29,7 +30,7 @@ export default {
       }
       // conv.contexts.set('images', 5, images); // This doesn't work yet.
     } catch (e) {
-      logger.info(e);
+      logger.info(JSON.stringify(e));
       conv.ask('The server isn\'t up right now but have a Cat instead!');
       conv.ask(new Image({
         url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
