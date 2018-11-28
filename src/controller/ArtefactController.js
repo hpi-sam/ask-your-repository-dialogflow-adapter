@@ -11,7 +11,7 @@ export default {
       // date: params.DatePeriod
       const response = await axios.get(url, {
         params: {
-          search_term: params.tags,
+          searchTerm: params.tags,
         },
       });
       const { images } = response.data;
