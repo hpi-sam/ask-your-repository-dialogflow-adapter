@@ -2,7 +2,9 @@
 import request from 'supertest';
 import nock from 'nock';
 import app from '../src/app';
-import { GetArtifactRequest, GetLatestArtifactRequest } from './SampleRequests';
+import {
+  GetArtifactRequest, GetLatestArtifactRequest, GetImageResponseMultiple, GetImageresponseSingle,
+} from './SampleRequests';
 
 function itShouldRespondOk(req) {
   it('should respond with a 200.', (done) => {
@@ -15,26 +17,31 @@ function itShouldRespondOk(req) {
 }
 
 function testAllCases(req) {
-  context('best case scenario', () => {
+  context('multiple images found', () => {
     nock('https://api.askir.me')
       .get('/images')
-      .reply(200, {
-        images: [{
-          id: '124',
-          url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
-        }],
-      });
+      .query(true)
+      .reply(200, GetImageResponseMultiple);
+    itShouldRespondOk(req);
+  });
+  context('one image found', () => {
+    nock('https://api.askir.me')
+      .get('/images')
+      .query(true)
+      .reply(200, GetImageresponseSingle);
     itShouldRespondOk(req);
   });
   context('esra is down', () => {
     nock('https://api.askir.me')
       .get('/images')
+      .query(true)
       .reply(502, 'Random answer I might get on a broken link or if the server is down.');
     itShouldRespondOk(req);
   });
   context('no images match the search', () => {
     nock('https://api.askir.me')
       .get('/images')
+      .query(true)
       .reply(200, {
         images: [],
       });
