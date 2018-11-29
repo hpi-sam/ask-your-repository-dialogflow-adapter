@@ -4,11 +4,11 @@ import logger from '../logger';
 
 
 export default {
-  async getArtefacts(conv, params) {
+  async getArtifacts(conv, params) {
     try {
       logger.info(JSON.stringify(params));
       const url = 'https://api.askir.me/images';
-      // type: params.Artefact
+      // type: params.Artifact
       // date: params.DatePeriod
       const response = await axios.get(url, {
         params: {
@@ -21,10 +21,10 @@ export default {
         conv.ask('Here is the best image we found for your request:');
         const image = new Image({
           url: images[0].url,
-          alt: params.Artefact,
+          alt: params.Artifact,
         });
         conv.ask(image);
-        logger.info(`Get Artefact - Responded with this image:\n${JSON.stringify(image)}`);
+        logger.info(`Get Artifact - Responded with this image:\n${JSON.stringify(image)}`);
       } else {
         conv.ask('No image matched your serach criteria. We are sorry.');
       }

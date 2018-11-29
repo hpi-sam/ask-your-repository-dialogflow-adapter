@@ -2,7 +2,7 @@
 import request from 'supertest';
 import nock from 'nock';
 import app from '../src/app';
-import { GetArtefactRequest, GetLatestArtefactRequest } from './SampleRequests';
+import { GetArtifactRequest, GetLatestArtifactRequest } from './SampleRequests';
 
 function itShouldRespondOk(req) {
   it('should respond with a 200.', (done) => {
@@ -53,12 +53,12 @@ describe('GET /', () => {
 
 describe('Intents', () => {
   describe('POST /', () => {
-    context('Get Artefacts Request', () => {
-      const req = GetArtefactRequest;
+    context('Get Artifacts Request', () => {
+      const req = GetArtifactRequest;
       testAllCases(req);
     });
-    context('Get latest Artefact Request', () => {
-      const req = GetLatestArtefactRequest;
+    context('Get latest Artifact Request', () => {
+      const req = GetLatestArtifactRequest;
       testAllCases(req);
     });
   });

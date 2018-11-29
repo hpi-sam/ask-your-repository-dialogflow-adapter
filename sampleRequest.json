@@ -4,7 +4,7 @@
       "queryText": "Need an image with tags whiteboard random blue",
       "parameters": {
         "DatePeriod": "",
-        "Artefact": "picture",
+        "Artifact": "picture",
         "Tag": [
           "whiteboard random blue"
         ]
@@ -25,27 +25,27 @@
           "name": "projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/DatePeriod",
           "lifespanCount": 5,
           "parameters": {
-            "Artefact.original": "image",
+            "Artifact.original": "image",
             "Tag.original": "whiteboard random blue",
             "DatePeriod.original": "",
             "Tag": [
               "whiteboard random blue"
             ],
-            "Artefact": "picture",
+            "Artifact": "picture",
             "DatePeriod": ""
           }
         },
         {
-          "name": "projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/Artefact",
+          "name": "projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/Artifact",
           "lifespanCount": 5,
           "parameters": {
-            "Artefact.original": "image",
+            "Artifact.original": "image",
             "Tag.original": "whiteboard random blue",
             "DatePeriod.original": "",
             "Tag": [
               "whiteboard random blue"
             ],
-            "Artefact": "picture",
+            "Artifact": "picture",
             "DatePeriod": ""
           }
         },
@@ -53,13 +53,13 @@
           "name": "projects/newagent-bdb60/agent/sessions/2b3e010b-2852-4a38-a02d-3e183a876c9f/contexts/tag",
           "lifespanCount": 5,
           "parameters": {
-            "Artefact.original": "image",
+            "Artifact.original": "image",
             "Tag.original": "whiteboard random blue",
             "DatePeriod.original": "",
             "Tag": [
               "whiteboard random blue"
             ],
-            "Artefact": "picture",
+            "Artifact": "picture",
             "DatePeriod": ""
           }
         },
@@ -69,20 +69,20 @@
           "parameters": {
             "slack_user_id": "UD3P98VK4",
             "slack_channel": "DDXTDK42U",
-            "Artefact.original": "image",
+            "Artifact.original": "image",
             "Tag.original": "whiteboard random blue",
             "DatePeriod.original": "",
             "Tag": [
               "whiteboard random blue"
             ],
-            "Artefact": "picture",
+            "Artifact": "picture",
             "DatePeriod": ""
           }
         }
       ],
       "intent": {
         "name": "projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e",
-        "displayName": "Get Artefacts",
+        "displayName": "Get Artifacts",
         "endInteraction": true
       },
       "intentDetectionConfidence": 0.98,
