@@ -1,3 +1,4 @@
+/* eslint-disable*/
 export const GetArtifactRequest = {
   responseId: '50caa4a9-7017-4443-9b67-9e0190fccb9d',
   queryResult: {
