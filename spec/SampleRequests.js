@@ -3,7 +3,9 @@ export const GetArtifactRequest = {
   responseId: '50caa4a9-7017-4443-9b67-9e0190fccb9d',
   queryResult: {
     queryText: 'get me an image tagged blue white yellow',
-    parameters: { DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'] },
+    parameters: {
+      DatePeriod: { startDate: '2018-04-01T12:00:00-06:00', endDate: '2018-04-30T12:00:00-06:00' }, Artifact: 'picture', Tag: ['blue white yellow'], Author: 'Arne',
+    },
     allRequiredParamsPresent: true,
     outputContexts: [{
       name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/date-period',
@@ -123,7 +125,7 @@ export const GetImageResponseMultiple = {
     {
       id: '367fc8c7-a038-4ed5-85f2-706541a05ad1',
       url: 'https://files.askir.me/1543847900282_Bildschirmfoto vom 2018-11-04 23-42-53.png',
-      tags: ['upload', 'food',],
+      tags: ['upload', 'food'],
       score: 0.0,
     },
     {
