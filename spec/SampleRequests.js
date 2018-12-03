@@ -76,5 +76,131 @@ export const GetLatestArtifactRequest = {
   originalDetectIntentRequest: { payload: {} },
   session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
 };
-export const GetImageResponseMultiple = { images: [{ id: '312dc1a6-9a68-44a9-899d-f99a869e8d14', url: 'https://files.askir.me/1543509158763_background_steppe.jpg', tags: '' }, { id: 'b0c9c135-57ce-4999-a3d7-2ab7ce71e244', url: 'https://files.askir.me/1543508084468_background_landie.jpg', tags: ['car', 'mountains', 'grass'] }, { id: '956bcbfe-31c9-4e01-bf3f-634c8af1e316', url: 'https://files.askir.me/1543508004343_background_road.jpg', tags: ['road', 'mountain', 'forest', 'fog'] }, { id: 'b6851d11-0f3d-4df2-a329-33c99a38fc67', url: 'https://files.askir.me/1543507651006_background_sunset.jpg', tags: ['sunset', 'forest', 'farn', 'nature'] }, { id: 'e3417fbf-4927-47b9-bd44-103a59a1ce92', url: 'https://files.askir.me/1543507560629_background_ice.jpg', tags: ['ice', 'mountain', 'lake', 'fog', 'nature', 'winter'] }, { id: '20d92de1-741f-4330-bcd1-c525d3e4171b', url: 'https://files.askir.me/1543507225557_background_mountains_2.jpg', tags: ['mountain', 'nature', 'landscape', 'trees'] }, { id: 'deca8229-5d6b-47f3-b9cf-825d92aefefd', url: 'https://files.askir.me/1543506933501_background_reedsjpg.jpg', tags: '' }, { id: 'f7c2b05d-00ec-49a3-ac1b-7788911e4f45', url: 'https://files.askir.me/1543509615620_background_mountains.jpg', tags: ['mountains', 'winter', 'snow ', 'fog'] }, { id: '15a4f9f6-6ac2-4841-a81c-9129bc85b348', url: 'https://files.askir.me/1543503585852_1543503570528-931482403.jpg', tags: ['Planning', 'Meeting'] }, { id: 'f627f2f9-5742-47ae-8b99-30408678f94e', url: 'https://files.askir.me/1543495665853_IMG_0632_2.jpg', tags: ['tree', 'nature', 'green'] }] };
-export const GetImageresponseSingle = { images: [{ id: 'f7c2b05d-00ec-49a3-ac1b-7788911e4f45', url: 'https://files.askir.me/1543509615620_background_mountains.jpg', tags: ['mountains', 'winter', 'snow ', 'fog'] }] };
+export const GetImageResponseMultiple = {
+  images: [
+    {
+      id: 'ae98f455-13bd-413a-8766-9e7302e70d8f',
+      url: 'https://files.askir.me/1543849566445_Bildschirmfoto vom 2018-11-04 23-42-53.png',
+      tags: ['upload', 'food', 'blub'],
+      score: 0.6,
+    },
+    {
+      id: 'a47e4df4-8541-4719-b848-f774bc8da713',
+      url: 'https://files.askir.me/1543849543931_Bildschirmfoto vom 2018-11-04 23-36-51.png',
+      tags: '',
+      score: 0.5,
+    },
+    {
+      id: '28fa0c9e-6ccc-4b6c-a672-33d333b773a3',
+      url: 'https://files.askir.me/1543849180993_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.3,
+    },
+    {
+      id: 'f421dc0c-24b4-4c3f-9702-b29ce57fffb1',
+      url: 'https://files.askir.me/1543848683895_Bildschirmfoto vom 2018-11-04 23-16-18.png',
+      tags: '',
+      score: 0.2,
+    },
+    {
+      id: 'ef8c89f6-9c05-40ed-857b-54cd3d62a89f',
+      url: 'https://files.askir.me/1543848664016_Bildschirmfoto vom 2018-11-04 23-36-51.png',
+      tags: '',
+      score: 0.2,
+    },
+    {
+      id: '64f5712a-3c97-41c9-85d8-a040cdf1fab7',
+      url: 'https://files.askir.me/1543848633941_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.1,
+    },
+    {
+      id: '9f7b3329-3aeb-4456-928d-58b1d95baa30',
+      url: 'https://files.askir.me/1543848509614_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.1,
+    },
+    {
+      id: '367fc8c7-a038-4ed5-85f2-706541a05ad1',
+      url: 'https://files.askir.me/1543847900282_Bildschirmfoto vom 2018-11-04 23-42-53.png',
+      tags: ['upload', 'food',],
+      score: 0.0,
+    },
+    {
+      id: '7b88ec14-44eb-4c23-b475-3f583c026a98',
+      url: 'https://files.askir.me/1543847638112_background_ice.jpg',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: 'ddff827d-7b1b-4ab0-b5d0-02606ba3d489',
+      url: 'https://files.askir.me/1543847584189_background_ice.jpg',
+      tags: [],
+      score: 0.0,
+    },
+  ],
+};
+export const GetImageresponseSingle = {
+  images: [
+    {
+      id: 'ae98f455-13bd-413a-8766-9e7302e70d8f',
+      url: 'https://files.askir.me/1543849566445_Bildschirmfoto vom 2018-11-04 23-42-53.png',
+      tags: ['upload', 'food', 'blub'],
+      score: 0.6,
+    },
+    {
+      id: 'a47e4df4-8541-4719-b848-f774bc8da713',
+      url: 'https://files.askir.me/1543849543931_Bildschirmfoto vom 2018-11-04 23-36-51.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: '28fa0c9e-6ccc-4b6c-a672-33d333b773a3',
+      url: 'https://files.askir.me/1543849180993_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: 'f421dc0c-24b4-4c3f-9702-b29ce57fffb1',
+      url: 'https://files.askir.me/1543848683895_Bildschirmfoto vom 2018-11-04 23-16-18.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: 'ef8c89f6-9c05-40ed-857b-54cd3d62a89f',
+      url: 'https://files.askir.me/1543848664016_Bildschirmfoto vom 2018-11-04 23-36-51.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: '64f5712a-3c97-41c9-85d8-a040cdf1fab7',
+      url: 'https://files.askir.me/1543848633941_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: '9f7b3329-3aeb-4456-928d-58b1d95baa30',
+      url: 'https://files.askir.me/1543848509614_Bildschirmfoto vom 2018-11-04 23-42-53_cropped.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: '367fc8c7-a038-4ed5-85f2-706541a05ad1',
+      url: 'https://files.askir.me/1543847900282_Bildschirmfoto vom 2018-11-04 23-42-53.png',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: '7b88ec14-44eb-4c23-b475-3f583c026a98',
+      url: 'https://files.askir.me/1543847638112_background_ice.jpg',
+      tags: '',
+      score: 0.0,
+    },
+    {
+      id: 'ddff827d-7b1b-4ab0-b5d0-02606ba3d489',
+      url: 'https://files.askir.me/1543847584189_background_ice.jpg',
+      tags: [],
+      score: 0.0,
+    },
+  ],
+};
