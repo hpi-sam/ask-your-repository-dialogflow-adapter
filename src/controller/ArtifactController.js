@@ -13,8 +13,10 @@ function setParams(params) {
   const requestString = {
     params: {},
   };
+
   if (params.Tag) { requestString.params.search = params.Tag; }
-  if (params.DatePeriod) { requestString.params.date = params.DatePeriod; }
+  if (params.DatePeriod) { requestString.params.start_date = params.DatePeriod.startDate; }
+  if (params.DatePeriod) { requestString.params.end_date = params.DatePeriod.endDate; }
   if (params.Author) { requestString.params.author = params.Author; }
   return requestString;
 }
