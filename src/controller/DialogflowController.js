@@ -3,7 +3,7 @@ import { Conversation } from 'actions-on-google';
 import logger from '../logger';
 import request from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
-import type { Response, Image, ConvParams } from '../types';
+import type { ResponseData, Image, ConvParams } from '../types';
 
 
 const THRESHHOLD: number = 0;
@@ -25,8 +25,8 @@ function respondServerError(conv: Conversation) {
   conv.ask('The server can\'t handle your request right. We are sorry.');
 }
 
-function getGoodImages(response: Response) {
-  return response.data.images.filter(element => element.score > THRESHHOLD);
+function getGoodImages(data: ResponseData) {
+  return data.images.filter(element => element.score > THRESHHOLD);
 }
 
 export default async function getArtifacts(conv: Conversation, params: ConvParams) {

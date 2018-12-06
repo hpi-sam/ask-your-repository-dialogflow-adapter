@@ -1,7 +1,8 @@
 // @flow
 import axios from 'axios';
+import { camelizeKeys } from 'humps';
 import logger from '../logger';
-import type { ConvParams, Response } from '../types';
+import type { ConvParams, Response, ResponseData } from '../types';
 
 const url: string = 'https://api.askir.me/images';
 
@@ -13,10 +14,11 @@ function setParams(params: ConvParams) {
   if (params.DatePeriod) { requestString.params.start_date = params.DatePeriod.startDate; }
   if (params.DatePeriod) { requestString.params.end_date = params.DatePeriod.endDate; }
   if (params.Author) { requestString.params.author = params.Author; }
-  logger.info(JSON.stringify(requestString));
+  logger.info(`Request ${JSON.stringify(requestString)}`);
   return requestString;
 }
 
-export default function request(params: ConvParams): Promise<Response> {
-  return axios.get(url, setParams(params));
+export default async function request(params: ConvParams): Promise<ResponseData> {
+  const response: Response = await axios.get(url, setParams(params));
+  return camelizeKeys(response.data);
 }
