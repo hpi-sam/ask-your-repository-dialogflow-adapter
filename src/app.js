@@ -3,7 +3,7 @@ import express from 'express';
 import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow } from 'actions-on-google';
-import ArtifactController from './controller/ArtifactController';
+import ArtifactController from './controller/DialogflowController';
 import logger from './logger';
 
 const app = express();
