@@ -3,7 +3,7 @@ import express from 'express';
 import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow } from 'actions-on-google';
-import ArtifactController from './controller/DialogflowController';
+import getArtifacts from './controller/DialogflowController';
 import logger from './logger';
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const dialog = dialogflow();
 
-dialog.intent('Get Artifacts', ArtifactController.getArtifacts);
+dialog.intent('Get Artifacts', getArtifacts);
 
 // Routes
 app.get('/', (req: Request, res: Response) => {
