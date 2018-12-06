@@ -10,7 +10,7 @@ const THRESHOLD: number = 0;
 
 function respondMultipleImages(conv: Conversation, images: Array<Image>, params: ConvParams) {
   conv.ask('Here are the best images we found for your request:');
-  conv.ask(makeCarousel(images, params));
+  conv.close(makeCarousel(images, params));
   logger.info('Responded with carousel.');
 }
 

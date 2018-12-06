@@ -16,7 +16,7 @@ export function makeImage(image: Image, params: ConvParams): DialogflowImage {
 
 export function makeCarousel(imageList: Array<Image>, params: ConvParams): BrowseCarousel {
   return new BrowseCarousel({
-    items: imageList.slice(0, 4).map((image, i) => new BrowseCarouselItem({
+    items: imageList.slice(0, 5).map((image, i) => new BrowseCarouselItem({
       title: `Image ${i + 1}`,
       url: image.url,
       description: getHumanReadableTags(image),
