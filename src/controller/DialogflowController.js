@@ -26,7 +26,10 @@ function respondServerError(conv: Conversation) {
 }
 
 function getGoodImages(data: ResponseData) {
-  return data.images.filter(element => element.score > THRESHOLD);
+  return data.images.filter((element) => {
+    logger.info(`Element: ${JSON.stringify(element)} and Score: ${JSON.stringify(element.score > THRESHOLD)}`);
+    return element.score > THRESHOLD;
+  });
 }
 
 export default async function getArtifacts(conv: Conversation, params: ConvParams) {
