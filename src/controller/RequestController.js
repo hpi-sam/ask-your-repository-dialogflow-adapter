@@ -1,23 +1,11 @@
 // @flow
 import axios from 'axios';
 import logger from '../logger';
-import type{ convParams } from './DialogflowController';
+import type { ConvParams, Response } from '../types';
 
 const url: string = 'https://api.askir.me/images';
 
-export type Image = {
-  id: string,
-  type: string,
-  created_at: string,
-  updated_at: string,
-  tags: Array<string>, file_date: string,
-  url: string,
-  score: number
-}
-export type Response = { data: { images: Array<Image> } };
-
-
-function setParams(params: convParams) {
+function setParams(params: ConvParams) {
   const requestString = {
     params: {},
   };
@@ -29,6 +17,6 @@ function setParams(params: convParams) {
   return requestString;
 }
 
-export default function request(params: convParams): Promise<Response> {
+export default function request(params: ConvParams): Promise<Response> {
   return axios.get(url, setParams(params));
 }
