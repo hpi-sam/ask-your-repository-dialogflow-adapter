@@ -6,7 +6,7 @@ import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
 
-const THRESHHOLD: number = 0;
+const THRESHOLD: number = 0;
 
 function respondMultipleImages(conv: Conversation, images: Array<Image>, params: ConvParams) {
   conv.ask('Here are the best images we found for your request:');
@@ -26,7 +26,7 @@ function respondServerError(conv: Conversation) {
 }
 
 function getGoodImages(data: ResponseData) {
-  return data.images.filter(element => element.score > THRESHHOLD);
+  return data.images.filter(element => element.score > THRESHOLD);
 }
 
 export default async function getArtifacts(conv: Conversation, params: ConvParams) {
