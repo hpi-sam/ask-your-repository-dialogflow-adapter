@@ -17,4 +17,5 @@ export type Image = {
     url: string,
     score: number
 }
-export type Response = { data: { images: Array<Image> } };
+export type ResponseData = { images: Array<Image> }
+export type Response = { data: ResponseData };
