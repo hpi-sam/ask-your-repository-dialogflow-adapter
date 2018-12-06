@@ -39,19 +39,17 @@ function respondServerError(conv: Conversation) {
   }));
 }
 
-export default {
-  async getArtifacts(conv: Conversation, params: convParams) {
-    try {
-      const goodImages = getGoodImages(await request(params));
-      if (goodImages.length > 1) {
-        respondMultipleImages(conv, goodImages, params);
-      } else if (goodImages.length === 1) {
-        respondOneImage(conv, goodImages, params);
-      } else {
-        conv.ask('No image matched your serach criteria. We are sorry.');
-      }
-    } catch (e) {
-      respondServerError(conv);
+export default async function getArtifacts(conv: Conversation, params: convParams) {
+  try {
+    const goodImages = getGoodImages(await request(params));
+    if (goodImages.length > 1) {
+      respondMultipleImages(conv, goodImages, params);
+    } else if (goodImages.length === 1) {
+      respondOneImage(conv, goodImages, params);
+    } else {
+      conv.ask('No image matched your serach criteria. We are sorry.');
     }
-  },
-};
+  } catch (e) {
+    respondServerError(conv);
+  }
+}
