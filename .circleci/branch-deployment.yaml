@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tobito-${CIRCLE_BRANCH}
+  labels:
+    app: tobito-${CIRCLE_BRANCH}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tobito-${CIRCLE_BRANCH}
+    spec:
+      containers:
+      - name: tobito
+        image: bp2018hg1/tobito:${CIRCLE_BRANCH}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 2178
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tobito-${CIRCLE_BRANCH}
+  labels:
+    app: tobito-${CIRCLE_BRANCH}
+spec:
+  selector:
+    app: tobito-${CIRCLE_BRANCH}
+  type: NodePort
+  ports:
+  - port: 2178
+    targetPort: 2178
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tobito-${CIRCLE_BRANCH}
+  labels:
+    app: tobito-${CIRCLE_BRANCH}
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "ingress-ip"
+spec:
+  rules:
+  - host: tobito.aksir.me
+    http:
+      paths:
+      - path: /_branch/${CIRCLE_BRANCH}
+        backend:
+          serviceName: tobito-${CIRCLE_BRANCH}
+          servicePort: 2178

@@ -30,10 +30,18 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker build -t bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID -t bp2018hg1/tobito:latest .
+      - run: docker build -t bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID -t bp2018hg1/tobito:$CIRCLE_BRANCH -t bp2018hg1/tobito:latest .
       - run: docker push bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID
+      - run: docker push bp2018hg1/tobito:$CIRCLE_BRANCH
       - run: docker push bp2018hg1/tobito:latest
-  deploy:
+  deploy-staging:
+    docker:
+      - image: dtzar/helm-kubectl:2.11.0
+    steps:
+      - checkout
+      - run: apk add gettext
+      - run: envsubst < .circleci/branch-deployment.yaml | kubectl apply --server=$KUBERNETES_SERVER --token=$KUBERNETES_BEARER_TOKEN -f -
+  deploy-production:
     docker:
       - image: dtzar/helm-kubectl:2.11.0
     steps:
@@ -50,9 +58,12 @@ workflows:
             - test
             - flow
             - lint
+      - deploy-staging:
+          requires:
+            - build
           filters:
             branches:
-              only: master
+              ignore: master
       - deploy:
           requires:
             - build
