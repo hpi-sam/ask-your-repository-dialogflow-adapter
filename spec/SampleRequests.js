@@ -302,3 +302,17 @@ export const GetImageresponseSingle = {
     url: 'https://files.askir.me/87483c45-ba94-425d-be71-c38abe497c72_Bildschirmfoto_vom_2018-11-04_23-14-21.png',
   }],
 };
+export const PostPresentationRequestMultiple = {
+  image_ids:
+    ['90762a51-dd48-4c27-b58a-47e58ef04ec5',
+      'be633702-4a79-4fed-914d-9df55444d7e4',
+      '69a1a540-af2b-421b-87aa-00bf8f1b224d',
+      'c917446f-bee7-400f-9007-2a74d730c024',
+      '27df6cd1-cefc-4bdc-b377-96afa6c1b43d',
+      'dc7e57e6-6a15-4145-bdc3-08b633dd0b3f',
+      'cf55076d-4cdb-4fe7-a6d6-a48065549d92'],
+};
+export const PostPresentationRequestSingle = {
+  image_ids:
+    ['90762a51-dd48-4c27-b58a-47e58ef04ec5',],
+};
