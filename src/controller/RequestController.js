@@ -3,7 +3,7 @@ import axios from 'axios';
 import { camelizeKeys, decamelizeKeys } from 'humps';
 import logger from '../logger';
 import type {
-  ConvParams, Response, ResponseData,
+  ConvParams, Response, ResponseData, PresentParams,
 } from '../types';
 
 const getUrl: string = 'https://api.askir.me/images';
@@ -21,10 +21,16 @@ function setGetParams(params: ConvParams) {
   return requestString;
 }
 
+function setPresentParams(imageIds: Array<string>): PresentParams {
+  const params = { imageIds };
+  return params;
+}
+
 export async function getImages(params: ConvParams): Promise<ResponseData> {
   const response: Response = await axios.get(getUrl, setGetParams(params));
   return camelizeKeys(response.data);
 }
 export async function presentImages(params: Array<string>) {
-  axios.post(presentUrl, decamelizeKeys(params));
+  logger.info(`Posting this: ${JSON.stringify(decamelizeKeys(setPresentParams(params)))}`);
+  axios.post(presentUrl, decamelizeKeys(setPresentParams(params)));
 }

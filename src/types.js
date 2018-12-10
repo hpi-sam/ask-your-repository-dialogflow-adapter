@@ -6,7 +6,9 @@ export type ConvParams = {
     Tag: Array<string>,
     Author: string
 }
-
+export type PresentParams = {
+    imageIds: Array<string>
+}
 export type Image = {
     id: string,
     type: string,
