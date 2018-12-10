@@ -46,6 +46,9 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
     if (images.length > 0) {
       presentImages(images.map((element: Image) => (element.id)));
     }
+    if (images.length > 0) {
+      presentImages(images.map((element: Image) => (element.id)));
+    }
   } catch (e) {
     respondServerError(conv);
   }
