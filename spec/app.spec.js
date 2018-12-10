@@ -3,7 +3,11 @@ import request from 'supertest';
 import nock from 'nock';
 import app from '../src/app';
 import {
-  GetArtifactRequest, GetImageResponseMultiple, GetImageresponseSingle,
+  GetArtifactRequest,
+  GetImageResponseMultiple,
+  GetImageresponseSingle,
+  PostPresentationRequestMultiple,
+  PostPresentationRequestSingle,
 } from './SampleRequests';
 import logger from '../src/logger';
 
@@ -16,29 +20,40 @@ function itShouldRespondOk(req) {
       .end(done);
   });
 }
-const nockObj = nock('https://api.askir.me')
-  .log(logger.info)
+const nockImages = nock('https://api.askir.me')
   .get('/images')
-  .query(true);
+  .query({
+    search: 'blue white yellow',
+    start_date: '2018-04-01T12:00:00-06:00',
+    end_date: '2018-04-30T12:00:00-06:00',
+    author: 'Arne',
+  });
+const nockPresentation = nock('https://api.askir.me');
 
 function testAllCases(req) {
   context('multiple images found', () => {
     beforeEach(() => {
-      nockObj
+      nockImages
         .reply(200, GetImageResponseMultiple);
+      nockPresentation
+        .post('/presentations', PostPresentationRequestMultiple)
+        .reply(200);
     });
     itShouldRespondOk(req);
   });
   context('one image found', () => {
     beforeEach(() => {
-      nockObj
+      nockImages
         .reply(200, GetImageresponseSingle);
+      nockPresentation
+        .post('/presentations', PostPresentationRequestSingle)
+        .reply(200);
     });
     itShouldRespondOk(req);
   });
   context('esra is down', () => {
     beforeEach(() => {
-      nockObj
+      nockImages
         .reply(502, 'Random answer I might get on a broken link or if the server is down.');
     });
 
@@ -46,7 +61,7 @@ function testAllCases(req) {
   });
   context('no images match the search', () => {
     beforeEach(() => {
-      nockObj
+      nockImages
         .reply(200, {
           images: [],
         });
