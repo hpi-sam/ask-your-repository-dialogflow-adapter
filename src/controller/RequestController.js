@@ -1,12 +1,15 @@
 // @flow
 import axios from 'axios';
-import { camelizeKeys } from 'humps';
+import { camelizeKeys, decamelizeKeys } from 'humps';
 import logger from '../logger';
-import type { ConvParams, Response, ResponseData } from '../types';
+import type {
+  ConvParams, Response, ResponseData,
+} from '../types';
 
-const url: string = 'https://api.askir.me/images';
+const getUrl: string = 'https://api.askir.me/images';
+const presentUrl: string = 'https://api.askir.me/presentations';
 
-function setParams(params: ConvParams) {
+function setGetParams(params: ConvParams) {
   const requestString = {
     params: {},
   };
@@ -18,7 +21,10 @@ function setParams(params: ConvParams) {
   return requestString;
 }
 
-export default async function request(params: ConvParams): Promise<ResponseData> {
-  const response: Response = await axios.get(url, setParams(params));
+export async function getImages(params: ConvParams): Promise<ResponseData> {
+  const response: Response = await axios.get(getUrl, setGetParams(params));
   return camelizeKeys(response.data);
+}
+export async function presentImages(params: Array<string>) {
+  axios.post(presentUrl, decamelizeKeys(params));
 }
