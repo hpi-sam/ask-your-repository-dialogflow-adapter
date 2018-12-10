@@ -9,7 +9,6 @@ import {
   PostPresentationRequestMultiple,
   PostPresentationRequestSingle,
 } from './SampleRequests';
-import logger from '../src/logger';
 
 function itShouldRespondOk(req) {
   it('should respond with a 200.', (done) => {
