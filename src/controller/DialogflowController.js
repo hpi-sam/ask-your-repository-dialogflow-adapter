@@ -1,7 +1,7 @@
 // @flow
 import { Conversation } from 'actions-on-google';
 import logger from '../logger';
-import request from './RequestController';
+import { getImages, presentImages } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
@@ -34,7 +34,7 @@ function getGoodImages(data: ResponseData) {
 
 export default async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    const images = getGoodImages(await request(params));
+    const images = getGoodImages(await getImages(params));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
     if (images.length > 1) {
       respondMultipleImages(conv, images, params);
@@ -42,6 +42,9 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
       respondOneImage(conv, images, params);
     } else {
       conv.ask('No image matched your serach criteria. We are sorry.');
+    }
+    if (images.length > 0) {
+      presentImages(images.map((element: Image) => (element.id)));
     }
   } catch (e) {
     respondServerError(conv);
