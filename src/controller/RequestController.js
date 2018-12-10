@@ -33,7 +33,11 @@ export function setGetParams(paramsIn: ConvParams) {
   return requestString;
 }
 
+<<<<<<< HEAD
 export function setPresentParams(imageIds: Array<string>): PresentParams {
+=======
+function setPresentParams(imageIds: Array<string>): PresentParams {
+>>>>>>> aab746b... Fix route to match elija
   const params = { imageIds };
   return params;
 }
