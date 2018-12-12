@@ -41,7 +41,7 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
     } else if (images.length === 1) {
       respondOneImage(conv, images, params);
     } else {
-      conv.ask('No image matched your serach criteria. We are sorry.');
+      conv.ask('No image matched your search criteria. We are sorry.');
     }
     if (images.length > 0) {
       presentImages(images.map((element: Image) => (element.id)));
