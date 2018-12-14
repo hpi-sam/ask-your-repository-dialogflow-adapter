@@ -25,7 +25,7 @@ function respondServerError(conv: Conversation) {
   conv.ask('The server can\'t handle your request right. We are sorry.');
 }
 
-function getGoodImages(data: ResponseData) {
+export function getGoodImages(data: ResponseData) {
   return data.images.filter((element) => {
     logger.info(`Element: ${JSON.stringify(element)} and Score: ${JSON.stringify(element.score > THRESHOLD)}`);
     return element.score > THRESHOLD;

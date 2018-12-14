@@ -6,10 +6,11 @@ import type {
   ConvParams, Response, ResponseData, PresentParams,
 } from '../types';
 
-const getUrl: string = 'https://api.askir.me/images';
-const presentUrl: string = 'https://api.askir.me/presentations';
+const baseUrl: string = process.env.API_URL || '';
+const getUrl: string = `${baseUrl}/images`;
+const presentUrl: string = `${baseUrl}/presentations`;
 
-function setGetParams(params: ConvParams) {
+export function setGetParams(params: ConvParams) {
   const requestString = {
     params: {},
   };
@@ -21,7 +22,7 @@ function setGetParams(params: ConvParams) {
   return requestString;
 }
 
-function setPresentParams(imageIds: Array<string>): PresentParams {
+export function setPresentParams(imageIds: Array<string>): PresentParams {
   const params = { imageIds };
   return params;
 }

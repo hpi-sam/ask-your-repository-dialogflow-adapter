@@ -1,6 +1,6 @@
-// @flow
 import request from 'supertest';
 import nock from 'nock';
+import { fail } from 'assert';
 import app from '../src/app';
 import {
   GetArtifactRequest,
@@ -79,6 +79,12 @@ describe('GET /', () => {
 });
 
 describe('Intents', () => {
+  afterEach(() => {
+    if (!nock.isDone()) {
+      fail('Not all nock interceptors were used!');
+      nock.cleanAll();
+    }
+  });
   describe('POST /', () => {
     context('Get Artifacts Request', () => {
       const req = GetArtifactRequest;
