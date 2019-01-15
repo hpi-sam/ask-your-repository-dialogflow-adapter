@@ -1,7 +1,7 @@
 // @flow
 import { Conversation } from 'actions-on-google';
 import logger from '../logger';
-import { getImages, presentImages } from './RequestController';
+import getImages from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
@@ -42,9 +42,6 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
       respondOneImage(conv, images);
     } else {
       conv.ask('No image matched your search criteria. We are sorry.');
-    }
-    if (images.length > 0) {
-      presentImages(images.map((element: Image) => (element.id)));
     }
     if (images.length > 0) {
       presentImages(images.map((element: Image) => (element.id)));
