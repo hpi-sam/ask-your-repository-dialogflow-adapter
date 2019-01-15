@@ -3,13 +3,12 @@ import axios from 'axios';
 import { camelizeKeys, decamelizeKeys } from 'humps';
 import logger from '../logger';
 import type {
-  ConvParams, Response, ResponseData, PresentParams,
+  ConvParams, Response, ResponseData,
 } from '../types';
 import 'datejs';
 
 const baseUrl: string = process.env.API_URL || '';
-const getUrl: string = `${baseUrl}/images`;
-const presentUrl: string = `${baseUrl}/presentations`;
+const getUrl: string = `${baseUrl}/dialogflow_images`;
 
 
 function formatISODate(dateString: string): string {
@@ -20,9 +19,10 @@ function formatISODate(dateString: string): string {
 
 export function setGetParams(paramsIn: ConvParams) {
   const params = {};
+  if (paramsIn.Team) { params.teamName = paramsIn.Team; }
   if (paramsIn.Tag) { params.search = paramsIn.Tag.join(', '); }
-  if (paramsIn.DatePeriod) { params.start_date = formatISODate(paramsIn.DatePeriod.startDate); }
-  if (paramsIn.DatePeriod) { params.end_date = formatISODate(paramsIn.DatePeriod.endDate); }
+  if (paramsIn.DatePeriod) { params.startDate = formatISODate(paramsIn.DatePeriod.startDate); }
+  if (paramsIn.DatePeriod) { params.endDate = formatISODate(paramsIn.DatePeriod.endDate); }
   if (paramsIn.Author) { params.author = paramsIn.Author; }
 
   const requestString = {
@@ -30,16 +30,7 @@ export function setGetParams(paramsIn: ConvParams) {
   };
   logger.info(`Request ${JSON.stringify(requestString)}`);
 
-  return requestString;
-}
-
-<<<<<<< HEAD
-export function setPresentParams(imageIds: Array<string>): PresentParams {
-=======
-function setPresentParams(imageIds: Array<string>): PresentParams {
->>>>>>> aab746b... Fix route to match elija
-  const params = { imageIds };
-  return params;
+  return decamelizeKeys(requestString);
 }
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
@@ -47,7 +38,5 @@ export async function getImages(params: ConvParams): Promise<ResponseData> {
   const responseData: any = camelizeKeys(response.data);
   return responseData;
 }
-export async function presentImages(params: Array<string>) {
-  logger.info(`Posting this: ${JSON.stringify(decamelizeKeys(setPresentParams(params)))}`);
-  axios.post(presentUrl, decamelizeKeys(setPresentParams(params)));
-}
+
+export default getImages;
