@@ -5,8 +5,7 @@ import logger from '../logger';
 import type {
   ConvParams, Response, ResponseData, PresentParams,
 } from '../types';
-
-require('datejs');
+import 'datejs';
 
 const baseUrl: string = process.env.API_URL || '';
 const getUrl: string = `${baseUrl}/images`;
@@ -41,7 +40,8 @@ export function setPresentParams(imageIds: Array<string>): PresentParams {
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
   const response: Response = await axios.get(getUrl, setGetParams(params));
-  return camelizeKeys(response.data);
+  const responseData: ResponseData = camelizeKeys(response.data);
+  return responseData;
 }
 export async function presentImages(params: Array<string>) {
   logger.info(`Posting this: ${JSON.stringify(decamelizeKeys(setPresentParams(params)))}`);
