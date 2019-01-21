@@ -1,6 +1,6 @@
-// @flow
 import request from 'supertest';
 import nock from 'nock';
+import { fail } from 'assert';
 import app from '../src/app';
 import {
   GetArtifactRequest,
@@ -23,8 +23,8 @@ const nockImages = nock('https://api.askir.me')
   .get('/images')
   .query({
     search: 'blue white yellow',
-    start_date: '2018-04-01T12:00:00-06:00',
-    end_date: '2018-04-30T12:00:00-06:00',
+    start_date: '2018-04-01T18:00:00.000Z',
+    end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
   });
 const nockPresentation = nock('https://api.askir.me');
@@ -79,6 +79,12 @@ describe('GET /', () => {
 });
 
 describe('Intents', () => {
+  afterEach(() => {
+    if (!nock.isDone()) {
+      fail('Not all nock interceptors were used!');
+      nock.cleanAll();
+    }
+  });
   describe('POST /', () => {
     context('Get Artifacts Request', () => {
       const req = GetArtifactRequest;

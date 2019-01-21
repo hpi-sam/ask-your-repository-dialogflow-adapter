@@ -5,30 +5,43 @@ import logger from '../logger';
 import type {
   ConvParams, Response, ResponseData, PresentParams,
 } from '../types';
+import 'datejs';
 
-const getUrl: string = 'https://api.askir.me/images';
-const presentUrl: string = 'https://api.askir.me/presentations';
+const baseUrl: string = process.env.API_URL || '';
+const getUrl: string = `${baseUrl}/images`;
+const presentUrl: string = `${baseUrl}/presentations`;
 
-function setGetParams(params: ConvParams) {
+
+function formatISODate(dateString: string): string {
+  const date = new Date(dateString);
+  const dateStringOut = date.toISOString();
+  return dateStringOut;
+}
+
+export function setGetParams(paramsIn: ConvParams) {
+  const params = {};
+  if (paramsIn.Tag) { params.search = paramsIn.Tag.join(', '); }
+  if (paramsIn.DatePeriod) { params.start_date = formatISODate(paramsIn.DatePeriod.startDate); }
+  if (paramsIn.DatePeriod) { params.end_date = formatISODate(paramsIn.DatePeriod.endDate); }
+  if (paramsIn.Author) { params.author = paramsIn.Author; }
+
   const requestString = {
-    params: {},
+    params,
   };
-  if (params.Tag) { requestString.params.search = params.Tag.join(', '); }
-  if (params.DatePeriod) { requestString.params.start_date = params.DatePeriod.startDate; }
-  if (params.DatePeriod) { requestString.params.end_date = params.DatePeriod.endDate; }
-  if (params.Author) { requestString.params.author = params.Author; }
   logger.info(`Request ${JSON.stringify(requestString)}`);
+
   return requestString;
 }
 
-function setPresentParams(imageIds: Array<string>): PresentParams {
+export function setPresentParams(imageIds: Array<string>): PresentParams {
   const params = { imageIds };
   return params;
 }
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
   const response: Response = await axios.get(getUrl, setGetParams(params));
-  return camelizeKeys(response.data);
+  const responseData: any = camelizeKeys(response.data);
+  return responseData;
 }
 export async function presentImages(params: Array<string>) {
   logger.info(`Posting this: ${JSON.stringify(decamelizeKeys(setPresentParams(params)))}`);

@@ -25,7 +25,7 @@ function respondServerError(conv: Conversation) {
   conv.ask('The server can\'t handle your request right. We are sorry.');
 }
 
-function getGoodImages(data: ResponseData) {
+export function getGoodImages(data: ResponseData) {
   return data.images.filter((element) => {
     logger.info(`Element: ${JSON.stringify(element)} and Score: ${JSON.stringify(element.score > THRESHOLD)}`);
     return element.score > THRESHOLD;
@@ -41,7 +41,7 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
     } else if (images.length === 1) {
       respondOneImage(conv, images, params);
     } else {
-      conv.ask('No image matched your serach criteria. We are sorry.');
+      conv.ask('No image matched your search criteria. We are sorry.');
     }
     if (images.length > 0) {
       presentImages(images.map((element: Image) => (element.id)));
