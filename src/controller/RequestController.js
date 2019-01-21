@@ -40,7 +40,7 @@ export function setPresentParams(imageIds: Array<string>): PresentParams {
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
   const response: Response = await axios.get(getUrl, setGetParams(params));
-  const responseData: ResponseData = camelizeKeys(response.data);
+  const responseData: any = camelizeKeys(response.data);
   return responseData;
 }
 export async function presentImages(params: Array<string>) {
