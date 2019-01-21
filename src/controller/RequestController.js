@@ -6,19 +6,31 @@ import type {
   ConvParams, Response, ResponseData, PresentParams,
 } from '../types';
 
+require('datejs');
+
 const baseUrl: string = process.env.API_URL || '';
 const getUrl: string = `${baseUrl}/images`;
 const presentUrl: string = `${baseUrl}/presentations`;
 
-export function setGetParams(params: ConvParams) {
+
+function formatISODate(dateString: string): string {
+  const date = new Date(dateString);
+  const dateStringOut = date.toISOString();
+  return dateStringOut;
+}
+
+export function setGetParams(paramsIn: ConvParams) {
+  const params = {};
+  if (paramsIn.Tag) { params.search = paramsIn.Tag.join(', '); }
+  if (paramsIn.DatePeriod) { params.start_date = formatISODate(paramsIn.DatePeriod.startDate); }
+  if (paramsIn.DatePeriod) { params.end_date = formatISODate(paramsIn.DatePeriod.endDate); }
+  if (paramsIn.Author) { params.author = paramsIn.Author; }
+
   const requestString = {
-    params: {},
+    params,
   };
-  if (params.Tag) { requestString.params.search = params.Tag.join(', '); }
-  if (params.DatePeriod) { requestString.params.start_date = params.DatePeriod.startDate; }
-  if (params.DatePeriod) { requestString.params.end_date = params.DatePeriod.endDate; }
-  if (params.Author) { requestString.params.author = params.Author; }
   logger.info(`Request ${JSON.stringify(requestString)}`);
+
   return requestString;
 }
 

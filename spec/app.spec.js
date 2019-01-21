@@ -23,8 +23,8 @@ const nockImages = nock('https://api.askir.me')
   .get('/images')
   .query({
     search: 'blue white yellow',
-    start_date: '2018-04-01T12:00:00-06:00',
-    end_date: '2018-04-30T12:00:00-06:00',
+    start_date: '2018-04-01T18:00:00.000Z',
+    end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
   });
 const nockPresentation = nock('https://api.askir.me');
