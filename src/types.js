@@ -4,7 +4,8 @@ export type ConvParams = {
     DatePeriod: { startDate: string, endDate: string },
     Artifact: string,
     Tag: Array<string>,
-    Author: string
+    Author: string,
+    Team: string,
 }
 export type PresentParams = {
     imageIds: Array<string>

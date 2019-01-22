@@ -6,8 +6,6 @@ import {
   GetArtifactRequest,
   GetImageResponseMultiple,
   GetImageresponseSingle,
-  PostPresentationRequestMultiple,
-  PostPresentationRequestSingle,
 } from './SampleRequests';
 
 function itShouldRespondOk(req) {
@@ -20,23 +18,19 @@ function itShouldRespondOk(req) {
   });
 }
 const nockImages = nock('https://api.askir.me')
-  .get('/images')
+  .get('/dialogflow_images')
   .query({
     search: 'blue white yellow',
     start_date: '2018-04-01T18:00:00.000Z',
     end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
   });
-const nockPresentation = nock('https://api.askir.me');
 
 function testAllCases(req) {
   context('multiple images found', () => {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageResponseMultiple);
-      nockPresentation
-        .post('/presentations', PostPresentationRequestMultiple)
-        .reply(200);
     });
     itShouldRespondOk(req);
   });
@@ -44,9 +38,6 @@ function testAllCases(req) {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageresponseSingle);
-      nockPresentation
-        .post('/presentations', PostPresentationRequestSingle)
-        .reply(200);
     });
     itShouldRespondOk(req);
   });
