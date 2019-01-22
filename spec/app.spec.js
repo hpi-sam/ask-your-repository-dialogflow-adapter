@@ -6,8 +6,6 @@ import {
   GetArtifactRequest,
   GetImageResponseMultiple,
   GetImageresponseSingle,
-  PostPresentationRequestMultiple,
-  PostPresentationRequestSingle,
 } from './SampleRequests';
 
 const baseUrl = process.env.API_URL || '';
@@ -28,16 +26,12 @@ const nockImages = nock(baseUrl)
     end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
   });
-const nockPresentation = nock(baseUrl);
 
 function testAllCases(req) {
   context('multiple images found', () => {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageResponseMultiple);
-      nockPresentation
-        .post('/presentations', PostPresentationRequestMultiple)
-        .reply(200);
     });
     itShouldRespondOk(req);
   });
@@ -45,9 +39,6 @@ function testAllCases(req) {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageresponseSingle);
-      nockPresentation
-        .post('/presentations', PostPresentationRequestSingle)
-        .reply(200);
     });
     itShouldRespondOk(req);
   });

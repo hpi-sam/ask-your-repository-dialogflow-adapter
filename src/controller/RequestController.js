@@ -38,5 +38,3 @@ export async function getImages(params: ConvParams): Promise<ResponseData> {
   const responseData: any = camelizeKeys(response.data);
   return responseData;
 }
-
-export default getImages;
