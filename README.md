@@ -1,4 +1,4 @@
-# Tobit
+# Tobito
 [![Coverage Status](https://coveralls.io/repos/github/hpi-sam/ask-your-repository-dialogflow-adapter/badge.svg?branch=master)](https://coveralls.io/github/hpi-sam/ask-your-repository-dialogflow-adapter?branch=master)
 ## Setup
 1. Install YARN: https://yarnpkg.com/lang/en/docs/install/
