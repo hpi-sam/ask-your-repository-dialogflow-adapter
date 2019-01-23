@@ -3,7 +3,9 @@ import express from 'express';
 import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, SignIn } from 'actions-on-google';
-import { getArtifacts, startSignIn, getSignIn } from './controller/DialogflowController';
+import {
+  getArtifacts, startSignIn, getSignIn, selectTeam,
+} from './controller/DialogflowController';
 import logger from './logger';
 
 
@@ -14,8 +16,9 @@ const dialog = dialogflow({ clientId: '24456970850-6t9vipqs6smjt3jmfk7db03cr8r1g
 dialog.intent('Default Welcome Intent', (conv) => {
   conv.ask(new SignIn('To get your account details'));
 });
-dialog.intent('Get Artifacts', getArtifacts);
 dialog.intent('Sign in', getSignIn);
+dialog.intent(['Get Artifacts', 'Get Artifacts for Team'], getArtifacts);
+dialog.intent('Select Team', selectTeam);
 // Routes
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, this is tobito. There isn\'t any content on this website.');
