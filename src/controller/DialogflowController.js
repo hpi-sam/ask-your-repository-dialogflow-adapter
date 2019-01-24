@@ -1,7 +1,7 @@
 // @flow
 import { Conversation } from 'actions-on-google';
 import logger from '../logger';
-import { getImages, getTeams } from './RequestController';
+import { getImages } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
@@ -25,14 +25,14 @@ function respondServerError(conv: Conversation) {
   conv.ask('The server can\'t handle your request right. We are sorry.');
 }
 
-async function teamExists(team: string) {
-  const teams = await getTeams();
-  logger.info(`Returned Teams are: ${JSON.stringify(teams)}`);
-  if (teams.any(x => x.name === team)) {
-    return true;
-  }
-  return false;
-}
+// async function teamExists(team: string) {
+//   const teams = await getTeams();
+//   logger.info(`Returned Teams are: ${JSON.stringify(teams)}`);
+//   if (teams.any(x => x.name === team)) {
+//     return true;
+//   }
+//   return false;
+// }
 
 export function getGoodImages(data: ResponseData) {
   return data.images.filter((element) => {
@@ -43,35 +43,35 @@ export function getGoodImages(data: ResponseData) {
 
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    if (teamExists(params.Team)) {
-      const images = getGoodImages(await getImages(params));
-      logger.info(`Returned Images are: ${JSON.stringify(images)}`);
-      if (images.length > 1) {
-        respondMultipleImages(conv, images);
-      } else if (images.length === 1) {
-        respondOneImage(conv, images);
-      } else {
-        conv.ask('No image matched your search criteria. We are sorry.');
-      }
+    // if (teamExists(params.Team)) {
+    const images = getGoodImages(await getImages(params));
+    logger.info(`Returned Images are: ${JSON.stringify(images)}`);
+    if (images.length > 1) {
+      respondMultipleImages(conv, images);
+    } else if (images.length === 1) {
+      respondOneImage(conv, images);
     } else {
-      conv.ask('Your team was not found. Please try again');
+      conv.ask('No image matched your search criteria. We are sorry.');
     }
+    // } else {
+    //   conv.ask('Your team was not found. Please try again');
+    // }
   } catch (e) {
     respondServerError(conv);
   }
 }
 
 export async function selectTeam(conv: Conversation, params: ConvParams) {
-  try {
-    if (teamExists(params.Team)) {
-      conv.ask(`You have now selected the team ${params.Team}`);
-    } else {
-      conv.ask('Your team was not found. Please try again.');
-      conv.contexts.delete('team');
-    }
-  } catch (e) {
-    respondServerError(conv);
-  }
+  // try {
+  //   if (teamExists(params.Team)) {
+  conv.ask(`You have now selected the team ${params.Team}`);
+  //   } else {
+  //     conv.ask('Your team was not found. Please try again.');
+  //     conv.contexts.delete('team');
+  //   }
+  // } catch (e) {
+  //   respondServerError(conv);
+  // }
 }
 
 // Create a Dialogflow intent with the `actions_intent_SIGN_IN` event.
