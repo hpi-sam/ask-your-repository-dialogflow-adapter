@@ -43,33 +43,33 @@ export function getGoodImages(data: ResponseData) {
 
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    if (teamExists(params.Team)) {
-      const images = getGoodImages(await getImages(params));
-      logger.info(`Returned Images are: ${JSON.stringify(images)}`);
-      if (images.length > 1) {
-        respondMultipleImages(conv, images, params);
-      } else if (images.length === 1) {
-        respondOneImage(conv, images, params);
-      } else {
-        conv.ask('No image matched your search criteria. We are sorry.');
-      }
+    // if (teamExists(params.Team)) {
+    const images = getGoodImages(await getImages(params));
+    logger.info(`Returned Images are: ${JSON.stringify(images)}`);
+    if (images.length > 1) {
+      respondMultipleImages(conv, images, params);
+    } else if (images.length === 1) {
+      respondOneImage(conv, images, params);
     } else {
-      conv.ask('Your team was not found. Please try again');
+      conv.ask('No image matched your search criteria. We are sorry.');
     }
+    // } else {
+    //   conv.ask('Your team was not found. Please try again');
+    // }
   } catch (e) {
     respondServerError(conv);
   }
 }
 
 export async function selectTeam(conv: Conversation, params: ConvParams) {
-  try {
-    if (teamExists(params.Team)) {
-      conv.ask(`You have now selected the team ${params.Team}`);
-    } else {
-      conv.ask('Your team was not found. Please try again.');
-      conv.contexts.delete('team');
-    }
-  } catch (e) {
-    respondServerError(conv);
-  }
+  // try {
+  //   if (teamExists(params.Team)) {
+  conv.ask(`You have now selected the team ${params.Team}`);
+  //   } else {
+  //     conv.ask('Your team was not found. Please try again.');
+  //     conv.contexts.delete('team');
+  //   }
+  // } catch (e) {
+  //   respondServerError(conv);
+  // }
 }
