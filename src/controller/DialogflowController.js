@@ -1,7 +1,7 @@
 // @flow
 import { Conversation } from 'actions-on-google';
 import logger from '../logger';
-import { getImages, getTeams } from './RequestController';
+import { getImages } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
@@ -25,14 +25,14 @@ function respondServerError(conv: Conversation) {
   conv.ask('The server can\'t handle your request right. We are sorry.');
 }
 
-async function teamExists(team: string) {
-  const teams = await getTeams();
-  logger.info(`Returned Teams are: ${JSON.stringify(teams)}`);
-  if (teams.any(x => x.name === team)) {
-    return true;
-  }
-  return false;
-}
+// async function teamExists(team: string) {
+//   const teams = await getTeams();
+//   logger.info(`Returned Teams are: ${JSON.stringify(teams)}`);
+//   if (teams.any(x => x.name === team)) {
+//     return true;
+//   }
+//   return false;
+// }
 
 export function getGoodImages(data: ResponseData) {
   return data.images.filter((element) => {
