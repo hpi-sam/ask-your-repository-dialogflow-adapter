@@ -26,16 +26,13 @@ export function setGetParams(paramsIn: ConvParams) {
   if (paramsIn.DatePeriod) { params.endDate = formatISODate(paramsIn.DatePeriod.endDate); }
   if (paramsIn.Author) { params.author = paramsIn.Author; }
 
-  const requestString = {
-    params,
-  };
-  logger.info(`Request ${JSON.stringify(requestString)}`);
+  logger.info(`Request ${JSON.stringify(params)}`);
 
-  return decamelizeKeys(requestString);
+  return decamelizeKeys(params);
 }
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
-  const response: Response = await axios.get(getUrl, setGetParams(params));
+  const response: Response = await axios.get(getUrl, { params: setGetParams(params) });
   const responseData: any = camelizeKeys(response.data);
   return responseData;
 }
