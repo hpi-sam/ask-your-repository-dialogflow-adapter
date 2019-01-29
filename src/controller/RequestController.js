@@ -8,8 +8,7 @@ import type {
 import 'datejs';
 
 const baseUrl: string = process.env.API_URL || '';
-const getUrl: string = `${baseUrl}/dialogflow_images`;
-const getTeamsUrl: string = `${baseUrl}/teams`;
+const getUrl: string = `${baseUrl}/images`;
 
 
 function formatISODate(dateString: string): string {
@@ -33,11 +32,6 @@ export function setGetParams(paramsIn: ConvParams) {
 
 export async function getImages(params: ConvParams): Promise<ResponseData> {
   const response: Response = await axios.get(getUrl, { params: setGetParams(params) });
-  const responseData: any = camelizeKeys(response.data);
-  return responseData;
-}
-export async function getTeams(): Promise<ResponseData> {
-  const response: Response = await axios.get(getTeamsUrl);
   const responseData: any = camelizeKeys(response.data);
   return responseData;
 }

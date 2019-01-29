@@ -1,11 +1,12 @@
 // @flow
-import { Conversation } from 'actions-on-google';
+import { Conversation, dialogflow } from 'actions-on-google';
+import cred from '../../credentials.json';
 import logger from '../logger';
 import { getImages } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
-
+class EntityNotFoundError extends Error { };
 const THRESHOLD: number = 0;
 
 function respondMultipleImages(conv: Conversation, images: Array<Image>) {
@@ -22,7 +23,7 @@ function respondOneImage(conv: Conversation, images: Array<Image>) {
 
 function respondServerError(conv: Conversation) {
   logger.info('Error');
-  conv.ask('The server can\'t handle your request right. We are sorry.');
+  conv.ask('The server can\'t handle your request right now. We are sorry.');
 }
 
 // async function teamExists(team: string) {
@@ -64,7 +65,8 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 export async function selectTeam(conv: Conversation, params: ConvParams) {
   // try {
   //   if (teamExists(params.Team)) {
-  conv.ask(`You have now selected the team ${params.Team}`);
+  logger.info(`You have now selected the team ${params.Team.synonmys[0]}`);
+  conv.ask(`You have selected the team ${params.Team.synonmys[0]}`);
   //   } else {
   //     conv.ask('Your team was not found. Please try again.');
   //     conv.contexts.delete('team');
@@ -84,3 +86,46 @@ export async function getSignIn(conv, params, signin) {
     conv.ask('I won\'t be able to save your data, but what do you want to do next?');
   }
 }
+export function createTeam(req: Request, res: Response) {
+  const entityName = 'Team';
+  const entitiesClient: any = new dialogflow.EntityTypesClient({
+    credentials: cred,
+  });
+  const projectId = 'newagent-bdb60';
+  const agentPath = entitiesClient.projectAgentPath(projectId);
+  const teamId = req.body.id;
+  const teamName = req.body.name;
+
+  entitiesClient
+    .listEntityTypes({ parnt: agentPath })
+    .then((responses) => {
+      const resources = responses[0];
+      for (let i = 0; i < resources.length; i += 1) {
+        const entity = resources[i];
+        if (entity.displayName === entityName) {
+          return entity;
+        }
+      }
+      throw EntityNotFoundError;
+    })
+    .then((team) => {
+      logger.info('Found Team.');
+      team.entities.push({ value: teamId, synonmys: [teamName] });
+      const request = {
+        entityType: team,
+        updateMask: {
+          paths: ['entities'],
+        },
+      };
+      return entitiesClient.updateEntityType(request);
+    })
+    .then((response) => {
+      logger.info(`Updated entity type: ${JSON.stringify(response[0])}`);
+    })
+    .catch((err) => {
+      if (err instanceof EntityNotFoundError) {
+        logger.info('Could not find the entity named Team.');
+        return;
+      }
+      logger.info(`Error updating entity type: ${err}`);
+    });

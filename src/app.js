@@ -4,7 +4,7 @@ import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, SignIn } from 'actions-on-google';
 import {
-  getArtifacts, startSignIn, getSignIn, selectTeam,
+  getArtifacts, startSignIn, getSignIn, selectTeam, createTeam,
 } from './controller/DialogflowController';
 import logger from './logger';
 
@@ -21,8 +21,9 @@ dialog.intent(['Get Artifacts', 'Get Artifacts for Team'], getArtifacts);
 dialog.intent('Select Team', selectTeam);
 // Routes
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, this is tobito. There isn\'t any content on this website.');
+  res.send('Hello, this is tobito! There isn\'t any content on this website.');
   logger.info('received GET /');
 });
 app.post('/', dialog);
+app.post('/teams', createTeam);
 export default app;
