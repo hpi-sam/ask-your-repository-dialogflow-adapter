@@ -64,7 +64,7 @@ workflows:
           filters:
             branches:
               ignore: master
-      - deploy:
+      - deploy-production:
           requires:
             - build
           filters:
