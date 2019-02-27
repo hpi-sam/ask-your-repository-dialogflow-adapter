@@ -31,7 +31,13 @@ export const GetArtifactRequest = {
       parameters: {
         'Tag.original': 'blue white yellow', DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'], 'Artifact.original': 'image', 'DatePeriod.original': '',
       },
-    }],
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/team',
+      lifespanCount:4,
+      parameters: {
+        'Artifact.original': 'image', 'Author': '', 'Tag.original': 'you', 'DatePeriod': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Tag': ['blue white yellow'], 'Author.original': '', 'DatePeriod.original': '', 'Team.original': "test","Artifact":"picture"}
+      }
+  ],
     intent: { name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e', displayName: 'Get Artifacts' },
     intentDetectionConfidence: 1,
     languageCode: 'en',
