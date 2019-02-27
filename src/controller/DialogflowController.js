@@ -1,12 +1,14 @@
 // @flow
-import { Conversation, dialogflow } from 'actions-on-google';
+import type { $Request as Request, $Response as Response } from 'express';
+import { Conversation, dialogflow, NewSurface } from 'actions-on-google';
+import { check, validationResult } from 'express-validator/check';
 import cred from '../../credentials.json';
 import logger from '../logger';
 import { getImages } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
-class EntityNotFoundError extends Error { };
+class EntityNotFoundError extends Error { }
 const THRESHOLD: number = 0;
 
 function respondMultipleImages(conv: Conversation, images: Array<Image>) {
@@ -24,6 +26,12 @@ function respondOneImage(conv: Conversation, images: Array<Image>) {
 function respondServerError(conv: Conversation) {
   logger.info('Error');
   conv.ask('The server can\'t handle your request right now. We are sorry.');
+}
+
+function addTeamFromContext(conv: Conversation, params: ConvParams) {
+  const newParams = params;
+  newParams.Team = conv.contexts.get('team').parameters.Team;
+  return newParams;
 }
 
 // async function teamExists(team: string) {
@@ -44,8 +52,9 @@ export function getGoodImages(data: ResponseData) {
 
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    // if (teamExists(params.Team)) {
-    const images = getGoodImages(await getImages(params));
+    logger.info(`request: ${JSON.stringify(conv)}`);
+    const paramsWithTeam = addTeamFromContext(conv, params);
+    const images = getGoodImages(await getImages(paramsWithTeam));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
     if (images.length > 1) {
       respondMultipleImages(conv, images);
@@ -54,9 +63,6 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
     } else {
       conv.ask('No image matched your search criteria. We are sorry.');
     }
-    // } else {
-    //   conv.ask('Your team was not found. Please try again');
-    // }
   } catch (e) {
     respondServerError(conv);
   }
@@ -65,8 +71,9 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 export async function selectTeam(conv: Conversation, params: ConvParams) {
   // try {
   //   if (teamExists(params.Team)) {
-  logger.info(`You have now selected the team ${params.Team.synonmys[0]}`);
-  conv.ask(`You have selected the team ${params.Team.synonmys[0]}`);
+  // logger.info(`You have now selected the team ${conv.contexts.get('team').parameters}`);
+  logger.info(JSON.stringify(params));
+  conv.ask(`You have selected the team ${params.Team}`);
   //   } else {
   //     conv.ask('Your team was not found. Please try again.');
   //     conv.contexts.delete('team');
@@ -86,7 +93,13 @@ export async function getSignIn(conv, params, signin) {
     conv.ask('I won\'t be able to save your data, but what do you want to do next?');
   }
 }
-export function createTeam(req: Request, res: Response) {
+
+export function createTeam(req: any, res: Response) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   const entityName = 'Team';
   const entitiesClient: any = new dialogflow.EntityTypesClient({
     credentials: cred,
@@ -96,7 +109,7 @@ export function createTeam(req: Request, res: Response) {
   const teamId = req.body.id;
   const teamName = req.body.name;
 
-  entitiesClient
+  return entitiesClient
     .listEntityTypes({ parnt: agentPath })
     .then((responses) => {
       const resources = responses[0];
@@ -121,11 +134,23 @@ export function createTeam(req: Request, res: Response) {
     })
     .then((response) => {
       logger.info(`Updated entity type: ${JSON.stringify(response[0])}`);
+      return res.status(200);
     })
     .catch((err) => {
       if (err instanceof EntityNotFoundError) {
         logger.info('Could not find the entity named Team.');
-        return;
+        res.statusMessage = 'Could not find entity type Dialogflow.';
+        return res.status(500);
       }
       logger.info(`Error updating entity type: ${err}`);
+      res.statusMessage = 'Could not update Team on Dialogflow.';
+      return res.status(500);
     });
+}
+
+export function validateTeamsParams() {
+  check('id').exists();
+  check('name').exists();
+  check('id').isString();
+  check('name').isString();
+}

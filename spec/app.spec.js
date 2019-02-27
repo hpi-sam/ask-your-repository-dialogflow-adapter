@@ -25,6 +25,7 @@ const nockImages = nock(baseUrl)
     start_date: '2018-04-01T18:00:00.000Z',
     end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
+    team_id: '74680e6a-d547-4b56-8745-3a43d554ffe9',
   });
 
 function testAllCases(req) {

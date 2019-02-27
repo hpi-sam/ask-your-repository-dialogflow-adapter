@@ -24,5 +24,5 @@ export type Team = {
     name: string,
     id: string
 }
-export type ResponseData = { images: Array<Image> }
+export type ResponseData = { images: Array<Image>, teams: Array<Team> }
 export type Response = { data: ResponseData };
