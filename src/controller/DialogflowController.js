@@ -1,10 +1,10 @@
 // @flow
-import type { $Request as Request, $Response as Response } from 'express';
-import { Conversation, dialogflow, NewSurface } from 'actions-on-google';
+import type { $Response as Response } from 'express';
+import { Conversation, dialogflow } from 'actions-on-google';
 import { check, validationResult } from 'express-validator/check';
 import cred from '../../credentials.json';
 import logger from '../logger';
-import { getImages } from './RequestController';
+import { getImages, getTeams } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 
@@ -34,14 +34,13 @@ function addTeamFromContext(conv: Conversation, params: ConvParams) {
   return newParams;
 }
 
-// async function teamExists(team: string) {
-//   const teams = await getTeams();
-//   logger.info(`Returned Teams are: ${JSON.stringify(teams)}`);
-//   if (teams.any(x => x.name === team)) {
-//     return true;
-//   }
-//   return false;
-// }
+async function getTeamName(teamId: string) {
+  const data = await getTeams();
+  logger.info(`Returned Teams are: ${JSON.stringify(data)}`);
+  const myTeam = data.teams.find(team => team.id === teamId);
+  if (!myTeam) return '';
+  return myTeam.name;
+}
 
 export function getGoodImages(data: ResponseData) {
   return data.images.filter((element) => {
@@ -69,18 +68,18 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 }
 
 export async function selectTeam(conv: Conversation, params: ConvParams) {
-  // try {
-  //   if (teamExists(params.Team)) {
-  // logger.info(`You have now selected the team ${conv.contexts.get('team').parameters}`);
-  logger.info(JSON.stringify(params));
-  conv.ask(`You have selected the team ${params.Team}`);
-  //   } else {
-  //     conv.ask('Your team was not found. Please try again.');
-  //     conv.contexts.delete('team');
-  //   }
-  // } catch (e) {
-  //   respondServerError(conv);
-  // }
+  try {
+    logger.info(`select team dialogflow params: ${JSON.stringify(params)}`);
+    const teamName = await getTeamName(params.Team);
+    if (teamName) {
+      conv.ask(`You have selected the team ${teamName}`);
+    } else {
+      conv.ask(`Could not find a team named ${params.Team}`);
+      conv.contexts.delete('team');
+    }
+  } catch (e) {
+    respondServerError(conv);
+  }
 }
 
 // Create a Dialogflow intent with the `actions_intent_SIGN_IN` event.
