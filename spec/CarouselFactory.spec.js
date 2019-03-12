@@ -5,20 +5,18 @@ import {
 import { getHumanReadableTags, makeImage, makeCarousel } from '../src/controller/CarouselFactory';
 
 describe('getHumanReadableTags', () => {
-  it('Returns correct Tags', (done) => {
-    expect(getHumanReadableTags(GetImageresponseSingle.images[1]))
-      .to.equal('dwa, dwada');
+  test('Returns correct Tags', (done) => {
+    expect(getHumanReadableTags(GetImageresponseSingle.images[1])).toBe('dwa, dwada');
     done();
   });
 });
 
 describe('makeImage', () => {
-  it('Returns correct Image', (done) => {
+  test('Returns correct Image', (done) => {
     expect(makeImage(
       GetImageresponseSingle.images[1],
       GetArtifactRequest.queryResult.parameters,
-    ))
-      .to.eql(new DialogflowImage({
+    )).toEqual(new DialogflowImage({
         url: 'https://files.askir.me/4df920ae-5718-499d-a13d-045489d71f2e_Bildschirmfoto_vom_2018-11-04_23-36-51.png',
         alt: 'Image with the tags: dwa, dwada',
       }));
@@ -27,12 +25,11 @@ describe('makeImage', () => {
 });
 
 describe('makeCarousel', () => {
-  it('should return a correct carousel', (done) => {
+  test('should return a correct carousel', (done) => {
     expect(makeCarousel(
       GetImageresponseSingle.images.slice(0, 3),
       GetArtifactRequest.queryResult.parameters,
-    ))
-      .to.eql(new BrowseCarousel({
+    )).toEqual(new BrowseCarousel({
         items: [
           new BrowseCarouselItem({
             title: 'Image 1',

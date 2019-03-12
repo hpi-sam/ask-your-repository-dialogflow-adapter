@@ -1,3 +1,4 @@
+import dialogflow, { EntityTypesClient } from 'dialogflow';
 import request from 'supertest';
 import nock from 'nock';
 import { fail } from 'assert';
@@ -7,10 +8,40 @@ import {
   GetImageResponseMultiple,
   GetImageresponseSingle,
 } from './SampleRequests';
+import logger from '../src/logger';
 
 const baseUrl = process.env.API_URL || '';
+
+function projectAgentPath(id) {
+  logger.info('projectAgentPath mock called');
+  return `project/agent/path/ ${id}`;
+}
+const mockProjectAgentPath = jest.fn(projectAgentPath);
+
+async function listEntityTypes(object) {
+  return [[{ displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }] }]];
+}
+const mockListEntityTypes = jest.fn(listEntityTypes);
+
+async function updateEntityType(request) {
+  return request.entityType;
+}
+const mockUpdateEntityType = jest.fn(updateEntityType);
+
+const mockEntityTypesClient = jest.fn().mockImplementation(() => ({
+  projectAgentPath: mockProjectAgentPath,
+  listEntityTypes: mockListEntityTypes,
+  updateEntityType: mockUpdateEntityType,
+}));
+
+jest.mock('dialogflow', () => ({
+  __esModule: true,
+  default: jest.fn(),
+  EntityTypesClient: mockEntityTypesClient,
+}));
+
 function itShouldRespondOk(req) {
-  it('should respond with a 200.', (done) => {
+  test('should respond with a 200.', (done) => {
     request(app)
       .post('/')
       .send(req)
@@ -29,21 +60,21 @@ const nockImages = nock(baseUrl)
   });
 
 function testAllCases(req) {
-  context('multiple images found', () => {
+  describe('multiple images found', () => {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageResponseMultiple);
     });
     itShouldRespondOk(req);
   });
-  context('one image found', () => {
+  describe('one image found', () => {
     beforeEach(() => {
       nockImages
         .reply(200, GetImageresponseSingle);
     });
     itShouldRespondOk(req);
   });
-  context('esra is down', () => {
+  describe('esra is down', () => {
     beforeEach(() => {
       nockImages
         .reply(502, 'Random answer I might get on a broken link or if the server is down.');
@@ -51,7 +82,7 @@ function testAllCases(req) {
 
     itShouldRespondOk(req);
   });
-  context('no images match the search', () => {
+  describe('no images match the search', () => {
     beforeEach(() => {
       nockImages
         .reply(200, {
@@ -63,7 +94,7 @@ function testAllCases(req) {
 }
 
 describe('GET /', () => {
-  it('should respond with a 200', (done) => {
+  test('should respond with a 200', (done) => {
     request(app)
       .get('/')
       .expect(200)
@@ -79,9 +110,34 @@ describe('Intents', () => {
     }
   });
   describe('POST /', () => {
-    context('Get Artifacts Request', () => {
+    describe('Get Artifacts Request', () => {
       const req = GetArtifactRequest;
       testAllCases(req);
     });
+  });
+});
+
+describe('POST /teams', () => {
+  beforeEach(() => {
+    EntityTypesClient.mockClear();
+  });
+  it('should respond with a 200', (done) => {
+    request(app)
+      .post('/teams')
+      .send({
+        id: '1234',
+        name: 'blub',
+      })
+      .expect(200)
+      .end(done);
+  });
+  it('should call updateEntityTypes with the correct parameters ', (done) => {
+    request(app)
+      .post('/teams')
+      .send({
+        id: '1234',
+        name: 'blub',
+      });
+    expect(EntityTypesClient).toHaveBeenCalledTimes(1);
   });
 });
