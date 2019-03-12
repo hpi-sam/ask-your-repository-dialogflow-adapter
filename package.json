@@ -12,7 +12,7 @@
     "flow-watch": "watch 'yarn flow'",
     "lint": "eslint .",
     "lint-watch": "watch 'yarn lint'",
-    "test": "nyc mocha --require @babel/register --require spec/testSetup.js  spec/*.spec.js",
+    "test": "jest",
     "tdd": "yarn test --watch",
     "exportAgent": "node ./utility/exportAgent.js",
     "importAgent": "node ./utility/importAgent.js"
@@ -55,6 +55,7 @@
     "flow-babel-webpack-plugin": "^1.1.1",
     "flow-bin": "^0.83.0",
     "flow-typed": "^2.5.1",
+    "jest": "^24.4.0",
     "mocha": "^5.2.0",
     "mocha-loader": "^2.0.0",
     "nodemon": "^1.18.4",

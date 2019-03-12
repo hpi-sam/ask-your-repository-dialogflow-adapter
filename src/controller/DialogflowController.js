@@ -1,6 +1,6 @@
 // @flow
 import type { $Response as Response, $Request as Request } from 'express';
-import dialogflowClient from 'dialogflow';
+import { EntityTypesClient } from 'dialogflow';
 import { Conversation } from 'actions-on-google';
 import { check, validationResult } from 'express-validator/check';
 import logger from '../logger';
@@ -103,16 +103,18 @@ export function validateTeamsParams(req, res, next) {
 }
 
 export function createTeam(req: Request, res: Response) {
-  logger.info('Trying to update team on dialogflow...');
+  logger.info('Updating team on dialogflow...');
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
 
   const entityName = 'Team';
-  const entitiesClient = new dialogflowClient.EntityTypesClient({
+  logger.info('will mock EntityTypesClient');
+  const entitiesClient = new EntityTypesClient({
     credentials,
   });
+  logger.info('did mock EntityTypesClient');
   const projectId = 'newagent-bdb60';
   const agentPath = entitiesClient.projectAgentPath(projectId);
   const teamId = req.body.id;
@@ -122,11 +124,9 @@ export function createTeam(req: Request, res: Response) {
     .listEntityTypes({ parent: agentPath })
     .then((responses) => {
       const resources = responses[0];
-      for (let i = 0; i < resources.length; i += 1) {
-        const entity = resources[i];
-        if (entity.displayName === entityName) {
-          return entity;
-        }
+      const entity = resources.find(resource => resource.displayName === entityName);
+      if (entity) {
+        return entity;
       }
       throw EntityNotFoundError;
     })
