@@ -1,12 +1,13 @@
 // @flow
-import type { $Response as Response } from 'express';
-import { Conversation, dialogflow } from 'actions-on-google';
+import type { $Response as Response, $Request as Request } from 'express';
+import dialogflowClient from 'dialogflow';
+import { Conversation } from 'actions-on-google';
 import { check, validationResult } from 'express-validator/check';
-import cred from '../../credentials.json';
 import logger from '../logger';
 import { getImages, getTeams } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
+import credentials from '../../credentials.json';
 
 class EntityNotFoundError extends Error { }
 const THRESHOLD: number = 0;
@@ -74,7 +75,7 @@ export async function selectTeam(conv: Conversation, params: ConvParams) {
     if (teamName) {
       conv.ask(`You have selected the team ${teamName}`);
     } else {
-      conv.ask(`Could not find a team named ${params.Team}`);
+      conv.ask('Could not find team.');
       conv.contexts.delete('team');
     }
   } catch (e) {
@@ -93,15 +94,24 @@ export async function getSignIn(conv, params, signin) {
   }
 }
 
-export function createTeam(req: any, res: Response) {
+export function validateTeamsParams(req, res, next) {
+  check('id').exists();
+  check('name').exists();
+  check('id').isString();
+  check('name').isString();
+  next();
+}
+
+export function createTeam(req: Request, res: Response) {
+  logger.info('Trying to update team on dialogflow...');
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
 
   const entityName = 'Team';
-  const entitiesClient: any = new dialogflow.EntityTypesClient({
-    credentials: cred,
+  const entitiesClient = new dialogflowClient.EntityTypesClient({
+    credentials,
   });
   const projectId = 'newagent-bdb60';
   const agentPath = entitiesClient.projectAgentPath(projectId);
@@ -109,7 +119,7 @@ export function createTeam(req: any, res: Response) {
   const teamName = req.body.name;
 
   return entitiesClient
-    .listEntityTypes({ parnt: agentPath })
+    .listEntityTypes({ parent: agentPath })
     .then((responses) => {
       const resources = responses[0];
       for (let i = 0; i < resources.length; i += 1) {
@@ -121,8 +131,8 @@ export function createTeam(req: any, res: Response) {
       throw EntityNotFoundError;
     })
     .then((team) => {
-      logger.info('Found Team.');
-      team.entities.push({ value: teamId, synonmys: [teamName] });
+      const newTeam = { synonyms: [teamName], value: teamId };
+      team.entities.push(newTeam);
       const request = {
         entityType: team,
         updateMask: {
@@ -133,23 +143,14 @@ export function createTeam(req: any, res: Response) {
     })
     .then((response) => {
       logger.info(`Updated entity type: ${JSON.stringify(response[0])}`);
-      return res.status(200);
+      return res.sendStatus(200);
     })
     .catch((err) => {
       if (err instanceof EntityNotFoundError) {
         logger.info('Could not find the entity named Team.');
-        res.statusMessage = 'Could not find entity type Dialogflow.';
-        return res.status(500);
+        return res.status(500).send('Could not find entity type Dialogflow.');
       }
       logger.info(`Error updating entity type: ${err}`);
-      res.statusMessage = 'Could not update Team on Dialogflow.';
-      return res.status(500);
+      return res.status(500).send('Could not update Team on Dialogflow.');
     });
-}
-
-export function validateTeamsParams() {
-  check('id').exists();
-  check('name').exists();
-  check('id').isString();
-  check('name').isString();
 }
