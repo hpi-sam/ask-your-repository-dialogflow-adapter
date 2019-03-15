@@ -100,22 +100,33 @@ describe('POST /teams', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  const teamName = 'blub';
+  const teamId = '1234';
+  const updateEntityTypeParams = {
+    entityType: { displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }, { synonyms: ['blub'], value: '1234' }] },
+    updateMask: {
+      paths: ['entities'],
+    },
+  };
+  const listEntityTypesParams = { parent: mockProjectAgentPath(process.env.PROJECT_ID) };
+
   it('should respond with a 200', (done) => {
     request(app)
       .post('/teams')
       .send({
-        id: '1234',
-        name: 'blub',
+        id: teamId,
+        name: teamName,
       })
       .expect(200)
       .end(done);
   });
-  it('should make all necessary mock calls', (done) => {
+  it('should make all necessary mock calls to dialogflow client library', (done) => {
     request(app)
       .post('/teams')
       .send({
-        id: '1234',
-        name: 'blub',
+        id: teamId,
+        name: teamName,
       })
       .expect(200)
       .end(() => {
@@ -126,23 +137,37 @@ describe('POST /teams', () => {
         done();
       });
   });
-  it('should call updateEntityTypes with the correct parameters ', (done) => {
-    const updateRequest = {
-      entityType: { displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }, { synonyms: ['blub'], value: '1234' }] },
-      updateMask: {
-        paths: ['entities'],
-      },
-    };
+  it('should call mocked dialogflow client library with the correct parameters ', (done) => {
     request(app)
       .post('/teams')
       .send({
-        id: '1234',
-        name: 'blub',
+        id: teamId,
+        name: teamName,
       })
       .expect(200)
       .end(() => {
-        expect(mockUpdateEntityType).toBeCalledWith(updateRequest);
+        expect(mockUpdateEntityType).toBeCalledWith(updateEntityTypeParams);
+        expect(mockListEntityTypes).toBeCalledWith(listEntityTypesParams);
         done();
       });
+  });
+  describe('fails to update dialogflow', () => {
+    beforeEach(() => {
+      EntityTypesClient.mockImplementation(() => ({
+        projectAgentPath: mockProjectAgentPath,
+        listEntityTypes: mockListEntityTypes,
+        updateEntityType: jest.fn(() => { throw Error; }),
+      }));
+    });
+    it('should respond 500', (done) => {
+      request(app)
+        .post('/teams')
+        .send({
+          id: teamId,
+          name: teamName,
+        })
+        .expect(500)
+        .end(done);
+    });
   });
 });

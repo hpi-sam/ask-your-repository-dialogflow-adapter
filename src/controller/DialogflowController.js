@@ -104,7 +104,6 @@ export function validateTeamsParams(req, res, next) {
 
 export function createTeam(req: Request, res: Response) {
   logger.info('Updating team on dialogflow...');
-  logger.info(process.env.GOOGLE_APPLICATION_CREDENTIALS);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
@@ -112,8 +111,7 @@ export function createTeam(req: Request, res: Response) {
 
   const entityName = 'Team';
   const entitiesClient = new EntityTypesClient();
-  const projectId = 'newagent-bdb60';
-  const agentPath = entitiesClient.projectAgentPath(projectId);
+  const agentPath = entitiesClient.projectAgentPath(process.env.PROJECT_ID);
   const teamId = req.body.id;
   const teamName = req.body.name;
   return entitiesClient
