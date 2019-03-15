@@ -7,7 +7,7 @@ import logger from '../logger';
 import { getImages, getTeams } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
-import credentials from '../../credentials.json';
+// import credentials from '../../credentials.json';
 
 class EntityNotFoundError extends Error { }
 const THRESHOLD: number = 0;
@@ -104,22 +104,18 @@ export function validateTeamsParams(req, res, next) {
 
 export function createTeam(req: Request, res: Response) {
   logger.info('Updating team on dialogflow...');
+  logger.info(process.env.GOOGLE_APPLICATION_CREDENTIALS);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
 
   const entityName = 'Team';
-  logger.info('will mock EntityTypesClient');
-  const entitiesClient = new EntityTypesClient({
-    credentials,
-  });
-  logger.info('did mock EntityTypesClient');
+  const entitiesClient = new EntityTypesClient();
   const projectId = 'newagent-bdb60';
   const agentPath = entitiesClient.projectAgentPath(projectId);
   const teamId = req.body.id;
   const teamName = req.body.name;
-
   return entitiesClient
     .listEntityTypes({ parent: agentPath })
     .then((responses) => {
