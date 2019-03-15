@@ -1,8 +1,12 @@
-import dialogflow, { EntityTypesClient } from 'dialogflow';
+import { EntityTypesClient } from 'dialogflow';
 import request from 'supertest';
 import nock from 'nock';
 import { fail } from 'assert';
 import app from '../src/app';
+import {
+  mockEntityTypesClient, mockProjectAgentPath,
+  mockUpdateEntityType, mockListEntityTypes,
+} from '../mocks/dialogflow';
 import {
   GetArtifactRequest,
   GetImageResponseMultiple,
@@ -12,33 +16,8 @@ import logger from '../src/logger';
 
 const baseUrl = process.env.API_URL || '';
 
-function projectAgentPath(id) {
-  logger.info('projectAgentPath mock called');
-  return `project/agent/path/ ${id}`;
-}
-const mockProjectAgentPath = jest.fn(projectAgentPath);
-
-async function listEntityTypes(object) {
-  return [[{ displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }] }]];
-}
-const mockListEntityTypes = jest.fn(listEntityTypes);
-
-async function updateEntityType(request) {
-  return request.entityType;
-}
-const mockUpdateEntityType = jest.fn(updateEntityType);
-
-const mockEntityTypesClient = jest.fn().mockImplementation(() => ({
-  projectAgentPath: mockProjectAgentPath,
-  listEntityTypes: mockListEntityTypes,
-  updateEntityType: mockUpdateEntityType,
-}));
-
-jest.mock('dialogflow', () => ({
-  __esModule: true,
-  default: jest.fn(),
-  EntityTypesClient: mockEntityTypesClient,
-}));
+jest.mock('dialogflow');
+EntityTypesClient.mockImplementation(() => (mockEntityTypesClient));
 
 function itShouldRespondOk(req) {
   test('should respond with a 200.', (done) => {
@@ -119,7 +98,7 @@ describe('Intents', () => {
 
 describe('POST /teams', () => {
   beforeEach(() => {
-    EntityTypesClient.mockClear();
+    jest.clearAllMocks();
   });
   it('should respond with a 200', (done) => {
     request(app)
@@ -131,13 +110,39 @@ describe('POST /teams', () => {
       .expect(200)
       .end(done);
   });
-  it('should call updateEntityTypes with the correct parameters ', (done) => {
+  it('should make all necessary mock calls', (done) => {
     request(app)
       .post('/teams')
       .send({
         id: '1234',
         name: 'blub',
+      })
+      .expect(200)
+      .end(() => {
+        expect(EntityTypesClient).toHaveBeenCalledTimes(1);
+        expect(mockProjectAgentPath).toHaveBeenCalledTimes(1);
+        expect(mockListEntityTypes).toHaveBeenCalledTimes(1);
+        expect(mockUpdateEntityType).toHaveBeenCalledTimes(1);
+        done();
       });
-    expect(EntityTypesClient).toHaveBeenCalledTimes(1);
+  });
+  it('should call updateEntityTypes with the correct parameters ', (done) => {
+    const updateRequest = {
+      entityType: { displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }, { synonyms: ['blub'], value: '1234' }] },
+      updateMask: {
+        paths: ['entities'],
+      },
+    };
+    request(app)
+      .post('/teams')
+      .send({
+        id: '1234',
+        name: 'blub',
+      })
+      .expect(200)
+      .end(() => {
+        expect(mockUpdateEntityType).toBeCalledWith(updateRequest);
+        done();
+      });
   });
 });
