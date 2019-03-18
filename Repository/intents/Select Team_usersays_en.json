@@ -1,0 +1,56 @@
+[
+  {
+    "id": "5533bbe5-4343-41bf-897f-a4dec878fa96",
+    "data": [
+      {
+        "text": "select team ",
+        "userDefined": false
+      },
+      {
+        "text": "Team",
+        "alias": "Team",
+        "meta": "@Team",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550852328
+  },
+  {
+    "id": "6ec3a422-5433-40d8-b7da-43090782c123",
+    "data": [
+      {
+        "text": "i am in team ",
+        "userDefined": false
+      },
+      {
+        "text": "Team",
+        "alias": "Team",
+        "meta": "@Team",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550852328
+  },
+  {
+    "id": "88ba3621-396c-4a5a-ab36-bf77193fa342",
+    "data": [
+      {
+        "text": "my team is ",
+        "userDefined": false
+      },
+      {
+        "text": "Team",
+        "alias": "Team",
+        "meta": "@Team",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1550852328
+  }
+]

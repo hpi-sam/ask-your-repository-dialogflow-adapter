@@ -1,0 +1,556 @@
+[
+  {
+    "id": "296d9fbd-9741-4665-bd64-c195adcd1802",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " by team ",
+        "userDefined": false
+      },
+      {
+        "text": "Team",
+        "alias": "Team",
+        "meta": "@Team",
+        "userDefined": true
+      },
+      {
+        "text": " tagged ",
+        "userDefined": false
+      },
+      {
+        "text": "tag",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1551279911
+  },
+  {
+    "id": "8293504d-a208-45ff-ad7e-5c461dc82775",
+    "data": [
+      {
+        "text": "show me an ",
+        "userDefined": false
+      },
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "alexa",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1544613940
+  },
+  {
+    "id": "8ea34a93-b16f-4484-9578-381aaf419bb1",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " from ",
+        "userDefined": false
+      },
+      {
+        "text": "tags",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1544606907
+  },
+  {
+    "id": "5a93cc0f-caa8-48e8-b1c0-046d37fd4bcd",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " with ",
+        "userDefined": false
+      },
+      {
+        "text": "blah blah",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1544606291
+  },
+  {
+    "id": "d85b0729-0257-4da1-b82b-4185769983a8",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " about ",
+        "userDefined": false
+      },
+      {
+        "text": "blub blub",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1544606291
+  },
+  {
+    "id": "bb97bd3a-58c2-48ad-a7bc-9ea6562a8480",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from 3 days ago",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543847606
+  },
+  {
+    "id": "f136e8f5-bc81-4903-9fa8-3ce3c9b1c817",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Arne",
+        "alias": "Author",
+        "meta": "@Author",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from yesterday",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543847606
+  },
+  {
+    "id": "d07c44ab-401e-4074-a147-b2733487bbeb",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Arne",
+        "alias": "Author",
+        "meta": "@Author",
+        "userDefined": false
+      },
+      {
+        "text": " tagged ",
+        "userDefined": false
+      },
+      {
+        "text": "blub",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543847606
+  },
+  {
+    "id": "e485f7fd-8d71-423b-b044-b3cfa5ce1ecf",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "Arne",
+        "alias": "Author",
+        "meta": "@Author",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543847606
+  },
+  {
+    "id": "53f0ddcb-2dd5-46bb-a09e-5c7315a3467c",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " tagged ",
+        "userDefined": false
+      },
+      {
+        "text": "tag tag tag",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "202db205-51f1-426a-aaf8-3ccbd115f4f0",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from 3 days ago",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      },
+      {
+        "text": " with tags ",
+        "userDefined": false
+      },
+      {
+        "text": "random large box",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "updated": 1543510782
+  },
+  {
+    "id": "4a264cc9-fe93-4ac1-aa76-901db7b4ab0b",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " with tags ",
+        "userDefined": false
+      },
+      {
+        "text": "whiteboard",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "random",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "e2adb32c-2262-45c8-a0b2-994ecb4345ad",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " with the tag ",
+        "userDefined": false
+      },
+      {
+        "text": "brainstorming",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "08c9f580-bca9-4e77-bc8c-0cd5cac907d2",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from yesterday",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": true
+      },
+      {
+        "text": " with tags ",
+        "userDefined": false
+      },
+      {
+        "text": "Leo",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "whiteboard",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "1f2df77c-3206-413c-962b-b260d08aec31",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " with the following tags ",
+        "userDefined": false
+      },
+      {
+        "text": "whiteboard cluster brainstorm planning cars",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "fa0b39a2-7111-4953-83b4-1a7c58e6dcb9",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " with tags ",
+        "userDefined": false
+      },
+      {
+        "text": "whiteboard",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "ff6a9a39-9339-4c5d-becd-51d839b87d49",
+    "data": [
+      {
+        "text": "image",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " with the tags ",
+        "userDefined": false
+      },
+      {
+        "text": "whiteboard",
+        "alias": "Tag",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "42e3c29d-5be4-4d18-aa82-eaffea2fda21",
+    "data": [
+      {
+        "text": "mind map",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from 3 days ago",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "0841f549-ca46-4d4f-9bd2-06bacbcf81b6",
+    "data": [
+      {
+        "text": "mindmap",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "from yesterday",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  },
+  {
+    "id": "d97401a6-4052-4831-9fb7-c7b6eaad5cd7",
+    "data": [
+      {
+        "text": "yesterday",
+        "alias": "DatePeriod",
+        "meta": "@sys.date-period",
+        "userDefined": true
+      },
+      {
+        "text": "\u0027s ",
+        "userDefined": false
+      },
+      {
+        "text": "mind map",
+        "alias": "Artifact",
+        "meta": "@Artifact",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1543510782
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "value": "mind map",
+    "synonyms": [
+      "mind map",
+      "Mind Map",
+      "Mindmap",
+      "mindmap",
+      "mind-map",
+      "mind maps",
+      "mindmaps"
+    ]
+  },
+  {
+    "value": "picture",
+    "synonyms": [
+      "picture",
+      "image",
+      "jpeg",
+      "jpg",
+      "png",
+      "photo",
+      "images",
+      "pictures"
+    ]
+  },
+  {
+    "value": "artifact",
+    "synonyms": [
+      "artifact",
+      "Artifact",
+      "artifacts"
+    ]
+  },
+  {
+    "value": "file",
+    "synonyms": [
+      "file",
+      "files"
+    ]
+  },
+  {
+    "value": "whiteboard",
+    "synonyms": [
+      "whiteboard",
+      "white board",
+      "board",
+      "whiteboard photo",
+      "whiteboards"
+    ]
+  }
+]
