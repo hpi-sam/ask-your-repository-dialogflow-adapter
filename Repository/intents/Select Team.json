@@ -1,0 +1,43 @@
+{
+  "id": "1cfe4c78-e559-4c93-924a-2a822d2c9e73",
+  "name": "Select Team",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "Team",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "3a787178-c5b1-414c-9b8a-f6de1ca602b8",
+          "required": false,
+          "dataType": "@Team",
+          "name": "Team",
+          "value": "$Team",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551277554,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,73 @@
+{
+  "id": "8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e",
+  "name": "Get Artifacts",
+  "auto": true,
+  "contexts": [
+    "Team"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "f6679a8e-68e7-4ddb-a443-0ae9041fc833",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "name": "DatePeriod",
+          "value": "$DatePeriod",
+          "isList": false
+        },
+        {
+          "id": "ea90f1d9-dbbf-46c7-b485-35a88fe4d56a",
+          "required": false,
+          "dataType": "@Artifact",
+          "name": "Artifact",
+          "value": "$Artifact",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What type of Artifact are you looking for?"
+            }
+          ],
+          "defaultValue": "Picture",
+          "isList": false
+        },
+        {
+          "id": "4c931624-3006-4de1-b64e-bb85f68eee06",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "Tag",
+          "value": "$Tag",
+          "isList": true
+        },
+        {
+          "id": "55fd0f3c-2b0d-4059-b7b5-bfacd05a0320",
+          "required": false,
+          "dataType": "@Author",
+          "name": "Author",
+          "value": "$Author",
+          "isList": false
+        },
+        {
+          "id": "1e90cbd3-cf3c-49df-848a-9a681eca0938",
+          "dataType": "@Team",
+          "name": "Team",
+          "value": "$Team",
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {
+        "slack": false
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551279911,
+  "fallbackIntent": false,
+  "events": []
+}
