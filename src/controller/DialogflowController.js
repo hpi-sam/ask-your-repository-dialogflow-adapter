@@ -52,7 +52,6 @@ export function getGoodImages(data: ResponseData) {
 
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    logger.info(`request: ${JSON.stringify(conv)}`);
     const paramsWithTeam = addTeamFromContext(conv, params);
     const images = getGoodImages(await getImages(paramsWithTeam));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
@@ -73,9 +72,9 @@ export async function selectTeam(conv: Conversation, params: ConvParams) {
     logger.info(`select team dialogflow params: ${JSON.stringify(params)}`);
     const teamName = await getTeamName(params.Team);
     if (teamName) {
-      conv.ask(`You have selected the team ${teamName}`);
+      conv.ask(`You have selected the team ${teamName}.`);
     } else {
-      conv.ask('Could not find team.');
+      conv.ask('Could not find that team.');
       conv.contexts.delete('team');
     }
   } catch (e) {
