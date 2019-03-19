@@ -1,16 +1,24 @@
 import { EntityTypesClient } from 'dialogflow';
+import { Conversation } from 'actions-on-google';
 import request from 'supertest';
 import nock from 'nock';
 import { fail } from 'assert';
+import { info } from 'winston';
+import { inspect } from 'util';
 import app from '../src/app';
 import {
-  mockEntityTypesClient, mockProjectAgentPath,
-  mockUpdateEntityType, mockListEntityTypes,
+  mockEntityTypesClient,
+  mockProjectAgentPath,
+  mockUpdateEntityType,
+  mockListEntityTypes,
 } from '../mocks/dialogflow';
 import {
   GetArtifactRequest,
+  SelectExistingTeamRequest,
+  SelectNonexistantTeamRequest,
   GetImageResponseMultiple,
   GetImageresponseSingle,
+  GetTeamsResponse,
 } from './SampleRequests';
 import logger from '../src/logger';
 
@@ -20,7 +28,7 @@ jest.mock('dialogflow');
 EntityTypesClient.mockImplementation(() => (mockEntityTypesClient));
 
 function itShouldRespondOk(req) {
-  test('should respond with a 200.', (done) => {
+  it('should respond with a 200.', (done) => {
     request(app)
       .post('/')
       .send(req)
@@ -53,7 +61,7 @@ function testAllCases(req) {
     });
     itShouldRespondOk(req);
   });
-  describe('esra is down', () => {
+  describe('elija is down', () => {
     beforeEach(() => {
       nockImages
         .reply(502, 'Random answer I might get on a broken link or if the server is down.');
@@ -84,7 +92,7 @@ describe('GET /', () => {
 describe('Intents', () => {
   afterEach(() => {
     if (!nock.isDone()) {
-      fail('Not all nock interceptors were used!');
+      fail('Not all nock interceptors for /images route were used!');
       nock.cleanAll();
     }
   });
@@ -92,6 +100,47 @@ describe('Intents', () => {
     describe('Get Artifacts Request', () => {
       const req = GetArtifactRequest;
       testAllCases(req);
+    });
+
+    describe('Select Team Request', () => {
+      const nockTeams = nock(process.env.API_URL || '')
+        .get('/teams');
+      describe('Selected Team exists in database', () => {
+        it('should respond with a 200.', (done) => {
+          nockTeams.reply(200, GetTeamsResponse);
+          request(app)
+            .post('/')
+            .send(SelectExistingTeamRequest)
+            .expect(200)
+            .end((err, res) => {
+              expect(res.text).toEqual('{"payload":{"google":{"expectUserResponse":true,"richResponse":{"items":[{"simpleResponse":{"textToSpeech":"You have selected the team blub."}}]}}}}');
+              done();
+            });
+        });
+      });
+      describe('Selected Team does not exist in database', () => {
+        it('should respond with a 200.', (done) => {
+          nockTeams.reply(200, GetTeamsResponse);
+          request(app)
+            .post('/')
+            .send(SelectNonexistantTeamRequest)
+            .expect(200)
+            .end(done);
+        });
+        it('should send back a respective message back to dialogflowa and delete the selected team from context', (done) => {
+          nockTeams.reply(200, GetTeamsResponse);
+          request(app)
+            .post('/')
+            .send(SelectNonexistantTeamRequest)
+            .expect(200)
+            .end((err, res) => {
+              logger.info('response to dialogflow:');
+              logger.info(JSON.stringify(res));
+              expect(res.text).toEqual('{"payload":{"google":{"expectUserResponse":true,"richResponse":{"items":[{"simpleResponse":{"textToSpeech":"Could not find that team."}}]}}},"outputContexts":[{"name":"projects/newagent-bdb60/agent/sessions/ABwppHFYGC-5qYVE4vMIzWGFqqI9wmDwFPWQxvskikDecWi_aYdi-wqvD_oCQ4wfx7azzBIRVy_ro9KpUEo/contexts/team","lifespanCount":0}]}');
+              done();
+            });
+        });
+      });
     });
   });
 });
