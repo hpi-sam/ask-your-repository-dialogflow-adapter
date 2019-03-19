@@ -34,18 +34,13 @@ jobs:
       - run: docker push bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID
       - run: docker push bp2018hg1/tobito:$CIRCLE_BRANCH
       - run: docker push bp2018hg1/tobito:latest
-  deploy-staging:
-    docker:
-      - image: dtzar/helm-kubectl:2.11.0
+  deploy_staging:
+    machine: true
     steps:
-      - checkout
-      - run: apk add gettext
-      - run: envsubst < .circleci/branch-deployment.yaml | kubectl apply --server=$KUBERNETES_SERVER --token=$KUBERNETES_BEARER_TOKEN -f -
-  deploy-production:
-    docker:
-      - image: dtzar/helm-kubectl:2.11.0
-    steps:
-      - run: kubectl set image deployment tobito tobito=bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID --server=$KUBERNETES_SERVER --token=$KUBERNETES_BEARER_TOKEN
+      - add_ssh_keys:
+          fingerprints:
+            - $STAGING_DEPLOY_FINGERPRINT
+      - run: ssh root@$STAGING_DEPLOY_HOST "cd $STAGING_DEPLOY_HOME; ./deploy-scripts/tobito"
 workflows:
   version: 2
   pipeline:
@@ -58,13 +53,7 @@ workflows:
             - test
             - flow
             - lint
-      - deploy-staging:
-          requires:
-            - build
-          filters:
-            branches:
-              ignore: master
-      - deploy-production:
+      - deploy_staging:
           requires:
             - build
           filters:
