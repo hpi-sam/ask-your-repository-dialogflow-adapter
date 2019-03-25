@@ -6,7 +6,7 @@ const AdmZip = require('adm-zip');
 const projectId = process.env.DIALOGFLOW_PROJECT_ID;
 const file = process.argv[2] || './Agent';
 
-async function exportAgent(projectId, file = './Agent') {
+async function exportAgent() {
   rimraf.sync(file);
   const agentClient = new Dialogflow.v2.AgentsClient({
     keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
@@ -17,4 +17,4 @@ async function exportAgent(projectId, file = './Agent') {
   zip.extractAllTo(file);
 }
 
-exportAgent(projectId, file);
+exportAgent();

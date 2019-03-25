@@ -6,7 +6,7 @@ const dynamic = require('./dynamicallyGeneratedEntries');
 const projectId = process.env.DIALOGFLOW_PROJECT_ID;
 const file = process.argv[2] || './Agent';
 
-async function importAgent(projectId, file) {
+async function importAgent() {
   const agentClient = new Dialogflow.v2.AgentsClient({
     keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
   });
@@ -17,4 +17,4 @@ async function importAgent(projectId, file) {
   await agentClient.importAgent({ parent: projectId, agentContent: buffer });
 }
 
-importAgent(projectId, file);
+importAgent();

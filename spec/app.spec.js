@@ -10,6 +10,7 @@ import {
   PostPresentationRequestSingle,
 } from './SampleRequests';
 
+const baseUrl = process.env.API_URL || '';
 function itShouldRespondOk(req) {
   it('should respond with a 200.', (done) => {
     request(app)
@@ -19,7 +20,7 @@ function itShouldRespondOk(req) {
       .end(done);
   });
 }
-const nockImages = nock('https://api.askir.me')
+const nockImages = nock(baseUrl)
   .get('/images')
   .query({
     search: 'blue white yellow',
@@ -27,7 +28,7 @@ const nockImages = nock('https://api.askir.me')
     end_date: '2018-04-30T18:00:00.000Z',
     author: 'Arne',
   });
-const nockPresentation = nock('https://api.askir.me');
+const nockPresentation = nock(baseUrl);
 
 function testAllCases(req) {
   context('multiple images found', () => {
