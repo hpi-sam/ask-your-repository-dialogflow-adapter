@@ -1,16 +1,20 @@
+require('dotenv').config();
+const rimraf = require('rimraf');
 const Dialogflow = require('dialogflow');
 const AdmZip = require('adm-zip');
 
+const projectId = process.env.DIALOGFLOW_PROJECT_ID;
+const file = process.argv[2] || './Agent';
 
 async function exportAgent(projectId, file = './Agent') {
-  const agentClient = new Dialogflow.v2.AgentsClient();
+  rimraf.sync(file);
+  const agentClient = new Dialogflow.v2.AgentsClient({
+    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+  });
   const [res] = await agentClient.exportAgent({ parent: projectId });
   const buffer = res.result.agentContent;
   const zip = new AdmZip(buffer);
   zip.extractAllTo(file);
 }
-if (process.argv[3]) {
-  exportAgent(process.argv[2], process.argv[3]);
-} else {
-  exportAgent(process.argv[2]);
-}
+
+exportAgent(projectId, file);
