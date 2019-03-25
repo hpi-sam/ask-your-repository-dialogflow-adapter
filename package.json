@@ -13,16 +13,20 @@
     "lint": "eslint .",
     "lint-watch": "watch 'yarn lint'",
     "test": "nyc mocha --require @babel/register --require spec/testSetup.js  spec/*.spec.js",
-    "tdd": "yarn test --watch"
+    "tdd": "yarn test --watch",
+    "exportAgent": "node ./src/utility/ExportAgent.js projects/newagent-bdb60",
+    "importAgent": "node ./src/utility/ImportAgent.js projects/newagent-bdb60"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/runtime": "^7.1.5",
     "actions-on-google": "^2.4.1",
+    "adm-zip": "^0.4.13",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "dotenv": "^6.2.0",
     "datejs": "^1.0.0-rc3",
+    "dialogflow": "^0.8.2",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "humps": "^2.0.1",
     "nock": "^10.0.2",
