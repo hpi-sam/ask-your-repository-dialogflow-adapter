@@ -17,7 +17,8 @@ async function exportAgent() {
   const [res] = await agentClient.exportAgent({ parent: projectId });
   const buffer = res.result.agentContent;
   const zip = new AdmZip(buffer);
-  zip.getEntries().forEach(entry => (config.exportExclude.includes(entry.name) && zip.deleteFile(entry)));
+  zip.getEntries().forEach(entry => (
+    config.exportExclude.includes(entry.name) && zip.deleteFile(entry)));
   zip.extractAllTo(file);
 }
 

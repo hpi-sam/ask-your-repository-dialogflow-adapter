@@ -14,7 +14,8 @@ async function importAgent() {
   });
   const zip = new AdmZip();
   zip.addLocalFolder(file);
-  zip.getEntries().forEach(entry => (config.importExclude.includes(entry.name) && zip.deleteFile(entry)));
+  zip.getEntries().forEach(entry => (
+    config.importExclude.includes(entry.name) && zip.deleteFile(entry)));
   const buffer = zip.toBuffer();
   await agentClient.importAgent({ parent: projectId, agentContent: buffer });
 }
