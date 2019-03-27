@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Dialogflow = require('dialogflow');
 const AdmZip = require('adm-zip');
-const dynamic = require('./dynamicallyGeneratedEntries');
+const importExclude = require('./agentConfig');
 
 const projectId = process.env.DIALOGFLOW_PROJECT_ID;
 const file = process.argv[2] || './Agent';
@@ -12,7 +12,7 @@ async function importAgent() {
   });
   const zip = new AdmZip();
   zip.addLocalFolder(file);
-  dynamic.forEach(entry => zip.deleteFile(entry));
+  zip.getEntries().forEach(entry => (importExclude.includes(entry.name) && zip.deleteFile(entry)));
   const buffer = zip.toBuffer();
   await agentClient.importAgent({ parent: projectId, agentContent: buffer });
 }
