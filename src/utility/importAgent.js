@@ -1,14 +1,16 @@
 require('dotenv').config();
+const argv = require('minimist')(process.argv.slice(2));
 const Dialogflow = require('dialogflow');
 const AdmZip = require('adm-zip');
 const importExclude = require('./agentConfig');
 
-const projectId = process.env.DIALOGFLOW_PROJECT_ID;
-const file = process.argv[2] || './Agent';
+const projectId = 'pid' in argv ? argv.pid : process.env.DIALOGFLOW_PROJECT_ID;
+const file = 'dir' in argv ? argv.dir : './Agent';
+const keyFile = 'key' in argv ? argv.key : process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 async function importAgent() {
   const agentClient = new Dialogflow.v2.AgentsClient({
-    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    keyFilename: keyFile,
   });
   const zip = new AdmZip();
   zip.addLocalFolder(file);

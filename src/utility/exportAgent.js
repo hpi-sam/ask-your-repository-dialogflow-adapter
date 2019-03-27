@@ -1,12 +1,13 @@
 require('dotenv').config();
+const argv = require('minimist')(process.argv.slice(2));
 const rimraf = require('rimraf');
 const Dialogflow = require('dialogflow');
 const AdmZip = require('adm-zip');
 const exportExclude = require('./agentConfig');
 
-const projectId = process.env.DIALOGFLOW_PROJECT_ID;
-const file = process.argv[2] || './Agent';
-const keyFile = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+const projectId = 'pid' in argv ? argv.pid : process.env.DIALOGFLOW_PROJECT_ID;
+const file = 'dir' in argv ? argv.dir : './Agent';
+const keyFile = 'key' in argv ? argv.key : process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 async function exportAgent() {
   rimraf.sync(file);
