@@ -1,10 +1,8 @@
 import { EntityTypesClient } from 'dialogflow';
-import { Conversation } from 'actions-on-google';
+import jest from 'jest';
 import request from 'supertest';
 import nock from 'nock';
 import { fail } from 'assert';
-import { info } from 'winston';
-import { inspect } from 'util';
 import app from '../src/app';
 import {
   mockEntityTypesClient,
