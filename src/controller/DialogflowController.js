@@ -54,10 +54,10 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 // Create a Dialogflow intent with the `actions_intent_SIGN_IN` event.
 export async function getSignIn(conv, params, signin) {
   if (signin.status === 'OK') {
-    const payload = conv.user.profile.payload;
+    const { payload } = conv.user.profile;
     console.log(payload);
     conv.ask(`I got your account details, ${payload.name}. What do you want to do next?`);
   } else {
-    conv.ask(`I won't be able to save your data, but what do you want to do next?`);
+    conv.ask('I won\'t be able to save your data, but what do you want to do next?');
   }
 }
