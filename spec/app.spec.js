@@ -1,5 +1,4 @@
 import { EntityTypesClient } from 'dialogflow';
-import jest from 'jest';
 import request from 'supertest';
 import nock from 'nock';
 import { fail } from 'assert';
