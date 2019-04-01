@@ -32,7 +32,7 @@ export function getGoodImages(data: ResponseData) {
   });
 }
 
-export default async function getArtifacts(conv: Conversation, params: ConvParams) {
+export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
     const images = getGoodImages(await getImages(params));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
@@ -48,5 +48,16 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
     }
   } catch (e) {
     respondServerError(conv);
+  }
+}
+
+// Create a Dialogflow intent with the `actions_intent_SIGN_IN` event.
+export async function getSignIn(conv, params, signin) {
+  if (signin.status === 'OK') {
+    const payload = conv.user.profile.payload;
+    console.log(payload);
+    conv.ask(`I got your account details, ${payload.name}. What do you want to do next?`);
+  } else {
+    conv.ask(`I won't be able to save your data, but what do you want to do next?`);
   }
 }
