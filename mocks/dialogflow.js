@@ -11,7 +11,7 @@ async function listEntityTypes(object) {
 export const mockListEntityTypes = jest.fn(listEntityTypes);
 
 async function updateEntityType(request) {
-  return request.entityType;
+  return [request.entityType];
 }
 export const mockUpdateEntityType = jest.fn(updateEntityType);
 

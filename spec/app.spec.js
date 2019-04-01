@@ -131,7 +131,6 @@ describe('Intents', () => {
             .send(SelectNonexistantTeamRequest)
             .expect(200)
             .end((err, res) => {
-              logger.info('response to dialogflow:');
               logger.info(JSON.stringify(res));
               expect(res.text).toEqual('{"payload":{"google":{"expectUserResponse":true,"richResponse":{"items":[{"simpleResponse":{"textToSpeech":"Could not find that team."}}]}}},"outputContexts":[{"name":"projects/newagent-bdb60/agent/sessions/ABwppHFYGC-5qYVE4vMIzWGFqqI9wmDwFPWQxvskikDecWi_aYdi-wqvD_oCQ4wfx7azzBIRVy_ro9KpUEo/contexts/team","lifespanCount":0}]}');
               done();

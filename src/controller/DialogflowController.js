@@ -93,7 +93,7 @@ export async function getSignIn(conv, params, signin) {
   }
 }
 
-export function validateTeamsParams(req, res, next) {
+export function validateTeamsParams(req: Request, res: Response, next) {
   check('id').exists();
   check('name').exists();
   check('id').isString();
