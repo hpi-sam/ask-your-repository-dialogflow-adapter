@@ -4,7 +4,7 @@ import { EntityTypesClient } from 'dialogflow';
 import { Conversation } from 'actions-on-google';
 import { check, validationResult } from 'express-validator/check';
 import logger from '../logger';
-import { getImages, getTeams } from './RequestController';
+import { getImages, getTeams, login } from './RequestController';
 import { makeCarousel, makeImage } from './CarouselFactory';
 import type { ResponseData, Image, ConvParams } from '../types';
 // import credentials from '../../credentials.json';
@@ -35,8 +35,8 @@ function addTeamFromContext(conv: Conversation, params: ConvParams) {
   return newParams;
 }
 
-async function getTeamName(teamId: string) {
-  const data = await getTeams();
+async function getTeamName(accessToken: string, teamId: string) {
+  const data = await getTeams(accessToken);
   logger.info(`Returned Teams are: ${JSON.stringify(data)}`);
   const myTeam = data.teams.find(team => team.id === teamId);
   if (!myTeam) return '';
@@ -53,7 +53,7 @@ export function getGoodImages(data: ResponseData) {
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
     const paramsWithTeam = addTeamFromContext(conv, params);
-    const images = getGoodImages(await getImages(paramsWithTeam));
+    const images = getGoodImages(await getImages(conv.user.storage.accessToken, paramsWithTeam));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
     if (images.length > 1) {
       respondMultipleImages(conv, images);
@@ -70,7 +70,7 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 export async function selectTeam(conv: Conversation, params: ConvParams) {
   try {
     logger.info(`select team dialogflow params: ${JSON.stringify(params)}`);
-    const teamName = await getTeamName(params.Team);
+    const teamName = await getTeamName(conv.user.storage.accessToken, params.Team);
     if (teamName) {
       conv.ask(`You have selected the team ${teamName}.`);
     } else {
@@ -83,17 +83,18 @@ export async function selectTeam(conv: Conversation, params: ConvParams) {
 }
 
 // Create a Dialogflow intent with the `actions_intent_SIGN_IN` event.
-export async function getSignIn(conv, params, signin) {
+export async function getSignIn(conv: Conversation, params: ConvParams, signin: any) {
   if (signin.status === 'OK') {
-    const { payload } = conv.user.profile;
-    console.log(payload);
-    conv.ask(`I got your account details, ${payload.name}. What do you want to do next?`);
+    const { token } = conv.user.profile;
+    const { accessToken } = await login(token);
+    conv.user.storage.accessToken = accessToken;
+    conv.ask('I logged your in. What do you want to do next?');
   } else {
     conv.ask('I won\'t be able to save your data, but what do you want to do next?');
   }
 }
 
-export function validateTeamsParams(req: Request, res: Response, next) {
+export function validateTeamsParams(req: Request, res: Response, next: any) {
   check('id').exists();
   check('name').exists();
   check('id').isString();

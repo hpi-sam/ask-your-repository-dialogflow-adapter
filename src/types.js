@@ -10,6 +10,12 @@ export type ConvParams = {
 export type PresentParams = {
     imageIds: Array<string>
 }
+
+export type AuthData = {
+    accessToken: string,
+    csrfToken: string,
+}
+
 export type Image = {
     id: string,
     type: string,

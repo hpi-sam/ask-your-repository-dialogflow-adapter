@@ -1,11 +1,10 @@
 // @flow
 import express from 'express';
-import { inspect } from 'util';
 import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, SignIn } from 'actions-on-google';
 import {
-  getArtifacts, startSignIn, getSignIn, selectTeam, createTeam, validateTeamsParams,
+  getArtifacts, getSignIn, selectTeam, createTeam, validateTeamsParams,
 } from './controller/DialogflowController';
 import logger from './logger';
 

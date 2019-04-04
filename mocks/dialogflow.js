@@ -1,11 +1,9 @@
-import logger from '../src/logger';
-
 function projectAgentPath(id) {
   return `project/agent/path/${id}`;
 }
 export const mockProjectAgentPath = jest.fn(projectAgentPath);
 
-async function listEntityTypes(object) {
+async function listEntityTypes() {
   return [[{ displayName: 'Team', entities: [{ synonyms: ['teamName'], value: 'teamId' }] }]];
 }
 export const mockListEntityTypes = jest.fn(listEntityTypes);
