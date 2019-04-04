@@ -4,11 +4,16 @@
     "plugin:flowtype/recommended"
   ],
   "plugins": [
+    "jest",
     "flowtype",
     "mocha"
   ],
   "env": {
-    "mocha": true
+    "mocha": true,
+    "jest/globals": true
+  },
+  "rules": {
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["conv"] }]
   },
   "globals": {
     "expect": true,

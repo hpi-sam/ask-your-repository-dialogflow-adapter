@@ -4,15 +4,25 @@ import { camelizeKeys, decamelizeKeys } from 'humps';
 import { config } from 'dotenv';
 import logger from '../logger';
 import type {
-  ConvParams, Response, ResponseData,
+  ConvParams, Response, ResponseData, AuthData,
 } from '../types';
 import 'datejs';
 
 config();
 const baseUrl: string = process.env.API_URL || '';
-const getUrl: string = `${baseUrl}/images`;
-const getTeamsUrl: string = `${baseUrl}/teams`;
+const loginUrl: string = `${baseUrl}/authentications`;
 
+function getApi(accessToken: string): any {
+  const axiosConfig = {
+    baseURL: baseUrl,
+    timeout: 1000,
+    headers: {},
+  };
+  if (accessToken) {
+    axiosConfig.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return axios.create(axiosConfig);
+}
 
 function formatISODate(dateString: string): string {
   const date = new Date(dateString);
@@ -33,17 +43,22 @@ export function setGetParams(paramsIn: ConvParams) {
   return decamelizeKeys(params);
 }
 
-export async function getImages(params: ConvParams): Promise<ResponseData> {
+export async function getImages(accessToken: string, params: ConvParams): Promise<ResponseData> {
   logger.info('get images:');
-  logger.info(getUrl);
   logger.info(JSON.stringify(setGetParams(params)));
-  const response: Response = await axios.get(getUrl, { params: setGetParams(params) });
+  const response: Response = await getApi(accessToken).get('/images', { params: setGetParams(params) });
   const responseData: any = camelizeKeys(response.data);
   return responseData;
 }
 
-export async function getTeams(): Promise<ResponseData> {
-  const response: Response = await axios.get(getTeamsUrl);
+export async function getTeams(accessToken: string): Promise<ResponseData> {
+  const response: Response = await getApi(accessToken).get('/teams');
   const responseData: any = camelizeKeys(response.data);
   return responseData;
+}
+
+export async function login(idToken: string): Promise<AuthData> {
+  const params = decamelizeKeys({ idToken, setCookies: false });
+  const response: Response = await axios.post(loginUrl, params);
+  return camelizeKeys(response.data);
 }
