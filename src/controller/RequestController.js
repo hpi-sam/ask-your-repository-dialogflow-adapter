@@ -60,5 +60,6 @@ export async function getTeams(accessToken: string): Promise<ResponseData> {
 export async function login(idToken: string): Promise<AuthData> {
   const params = decamelizeKeys({ idToken, setCookies: false });
   const response: Response = await axios.post(loginUrl, params);
-  return camelizeKeys(response.data);
+  const responseData: any = camelizeKeys(response.data);
+  return responseData;
 }
