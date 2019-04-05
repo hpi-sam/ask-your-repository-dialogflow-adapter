@@ -20,7 +20,7 @@ describe('makeImage', () => {
     ))
       .to.eql(new DialogflowImage({
         url: 'https://files.askir.me/4df920ae-5718-499d-a13d-045489d71f2e_Bildschirmfoto_vom_2018-11-04_23-36-51.png',
-        alt: 'picture with the tags: dwa, dwada',
+        alt: 'Image with the tags: dwa, dwada',
       }));
     done();
   });
@@ -40,7 +40,7 @@ describe('makeCarousel', () => {
             description: 'dwa',
             image: new DialogflowImage({
               url: 'https://files.askir.me/c2d7af95-44f6-4839-82d4-eca946e75e91_Bildschirmfoto_vom_2018-07-25_22-25-23.png',
-              alt: 'picture with the tags: dwa',
+              alt: 'Image with the tags: dwa',
             }),
           }),
           new BrowseCarouselItem({
@@ -49,7 +49,7 @@ describe('makeCarousel', () => {
             description: 'dwa, dwada',
             image: new DialogflowImage({
               url: 'https://files.askir.me/4df920ae-5718-499d-a13d-045489d71f2e_Bildschirmfoto_vom_2018-11-04_23-36-51.png',
-              alt: 'picture with the tags: dwa, dwada',
+              alt: 'Image with the tags: dwa, dwada',
             }),
           }),
           new BrowseCarouselItem({
@@ -58,7 +58,7 @@ describe('makeCarousel', () => {
             description: 'dwa',
             image: new DialogflowImage({
               url: 'https://files.askir.me/141b360d-155a-4594-8911-b6576565a0cb_Bildschirmfoto_vom_2018-11-04_23-14-21.png',
-              alt: 'picture with the tags: dwa',
+              alt: 'Image with the tags: dwa',
             }),
           }),
         ],
