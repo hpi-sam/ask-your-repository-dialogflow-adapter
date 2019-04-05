@@ -147,6 +147,6 @@ class PhraseGenerator {
 
 
 const gen = new PhraseGenerator();
-fs.writeFile('test.json', gen.makePhrases(), (err) => {
+fs.writeFile('./Agent/intents/Get Artifacts_usersays_en.json', gen.makePhrases(), (err) => {
   if (err) { console.error(err); }
 });
