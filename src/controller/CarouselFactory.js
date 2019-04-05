@@ -7,7 +7,7 @@ export function getHumanReadableTags(image: Image): string {
   return image.tags ? image.tags.join(', ') : 'No Tags';
 }
 
-export function makeImage(image: Image, params: ConvParams): DialogflowImage {
+export function makeImage(image: Image): DialogflowImage {
   return new DialogflowImage({
     url: image.url,
     alt: `Image with the tags: ${getHumanReadableTags(image)}`,
