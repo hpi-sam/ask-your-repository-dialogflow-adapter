@@ -22,7 +22,7 @@
   },
   "defaultTimezone": "Europe/Madrid",
   "webhook": {
-    "url": "https://11ca3755.ngrok.io",
+    "url": "https://d4b33de5.ngrok.io",
     "headers": {
       "": ""
     },

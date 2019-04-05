@@ -19,21 +19,6 @@
           "isList": false
         },
         {
-          "id": "ea90f1d9-dbbf-46c7-b485-35a88fe4d56a",
-          "required": false,
-          "dataType": "@Artifact",
-          "name": "Artifact",
-          "value": "$Artifact",
-          "prompts": [
-            {
-              "lang": "en",
-              "value": "What type of Artifact are you looking for?"
-            }
-          ],
-          "defaultValue": "Picture",
-          "isList": false
-        },
-        {
           "id": "4c931624-3006-4de1-b64e-bb85f68eee06",
           "required": false,
           "dataType": "@sys.any",
@@ -51,6 +36,7 @@
         },
         {
           "id": "1e90cbd3-cf3c-49df-848a-9a681eca0938",
+          "required": false,
           "dataType": "@Team",
           "name": "Team",
           "value": "$Team",

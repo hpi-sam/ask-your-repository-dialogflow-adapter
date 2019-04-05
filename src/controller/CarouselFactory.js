@@ -10,7 +10,7 @@ export function getHumanReadableTags(image: Image): string {
 export function makeImage(image: Image, params: ConvParams): DialogflowImage {
   return new DialogflowImage({
     url: image.url,
-    alt: `${params.Artifact} with the tags: ${getHumanReadableTags(image)}`,
+    alt: `Image with the tags: ${getHumanReadableTags(image)}`,
   });
 }
 
