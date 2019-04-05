@@ -1,6 +1,6 @@
 // @flow
 import { Image as DialogflowImage, BrowseCarousel, BrowseCarouselItem } from 'actions-on-google';
-import type { Image, ConvParams } from '../types';
+import type { Image } from '../types';
 
 
 export function getHumanReadableTags(image: Image): string {
@@ -14,7 +14,7 @@ export function makeImage(image: Image): DialogflowImage {
   });
 }
 
-export function makeCarousel(imageList: Array<Image>, params: ConvParams): BrowseCarousel {
+export function makeCarousel(imageList: Array<Image>): BrowseCarousel {
   return new BrowseCarousel({
     items: imageList.slice(0, 5).map((image, i) => new BrowseCarouselItem({
       title: `Image ${i + 1}`,
