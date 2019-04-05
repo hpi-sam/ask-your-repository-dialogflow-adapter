@@ -16,7 +16,7 @@ function respondMultipleImages(conv: Conversation, images: Array<Image>, params:
 
 function respondOneImage(conv: Conversation, images: Array<Image>, params: ConvParams) {
   conv.ask('Here is the best image we found for your request:');
-  conv.ask(makeImage(images[0], params));
+  conv.ask(makeImage(images[0]));
   logger.info('Responded with image.');
 }
 

@@ -20,7 +20,7 @@ export function makeCarousel(imageList: Array<Image>, params: ConvParams): Brows
       title: `Image ${i + 1}`,
       url: image.url,
       description: getHumanReadableTags(image),
-      image: makeImage(image, params),
+      image: makeImage(image),
     })),
   });
 }
