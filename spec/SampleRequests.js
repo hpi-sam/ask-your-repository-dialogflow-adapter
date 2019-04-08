@@ -1,8 +1,167 @@
 /* eslint-disable*/
+export const DefaultWelcomeRequest = {
+  "responseId": "1ff0d4b7-05b7-4d0a-acb9-a13f1f88941d",
+  "queryResult": {
+    "queryText": "GOOGLE_ASSISTANT_WELCOME",
+    "action": "input.welcome",
+    "parameters": {},
+    "allRequiredParamsPresent": true,
+    "fulfillmentText": "Good day! What can I do for you today?",
+    "fulfillmentMessages": [{"text":{"text":["Good day! What can I do for you today?"]}}],
+    "outputContexts":
+      [
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/google_assistant_welcome"
+        },
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_screen_output"
+        },
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_account_linking"
+        },
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_audio_output"
+        },
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/google_assistant_input_type_keyboard"
+        },
+        {
+          "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_web_browser"
+        },
+        {
+          "name":"projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_media_response_audio"
+        }
+      ],
+    "intent": {
+      "name": "projects/newagent-bdb60/agent/intents/662daa24-1c7b-4ca1-9d13-4024aa2d1689",
+      "displayName": "Default Welcome Intent"
+    },
+    "intentDetectionConfidence": 1,
+    "languageCode": "en-us"
+  },
+  "originalDetectIntentRequest": {
+    "source": "google",
+    "version": "2",
+    "payload": {
+      "isInSandbox": true,
+      "surface": {
+        "capabilities": [
+          {"name":"actions.capability.AUDIO_OUTPUT"},
+          {"name":"actions.capability.ACCOUNT_LINKING"},
+          {"name":"actions.capability.WEB_BROWSER"},
+          {"name":"actions.capability.SCREEN_OUTPUT"},
+          {"name":"actions.capability.MEDIA_RESPONSE_AUDIO"}
+        ]
+      },
+      "requestType": "SIMULATOR",
+      "inputs": [
+        {
+          "rawInputs": [{"query":"Talk to Paradise Cloud","inputType":"KEYBOARD"}],
+          "intent": "actions.intent.MAIN"
+        }
+      ],
+      "user": {
+        "lastSeen": "2019-04-04T14:50:22Z",
+        "locale": "en-US",
+        "userId": "ABwppHGfVqL0_iPyAXfWHXGszEHlBBfzCWCMvAtwlTLr9r79GvACcqhssYyJb9v_wKgBeOCPYXMaPPrzgLg"
+      },
+      "conversation": {"conversationId":"ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE","type":"NEW"}
+    }
+  },
+  "session": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE"
+};
+
+export const SignInRequest = {
+  "responseId": "abe22e3e-4cc7-48d0-a9fc-4198a0e602cc",
+  "queryResult": {
+    "queryText": "actions_intent_SIGN_IN",
+    "parameters": {},
+    "allRequiredParamsPresent": true,
+    "fulfillmentMessages": [{"text":{"text":[""]}}],
+    "outputContexts": [
+      {
+        "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_screen_output"
+      },
+      {
+        "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_intent_sign_in",
+        "parameters": {
+          "SIGN_IN": {
+            "@type": "type.googleapis.com/google.actions.v2.SignInValue",
+            "status":"OK"
+          },
+          "text": ""
+        }
+      },
+      {
+        "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_account_linking"
+      },
+      {
+        "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_audio_output"
+      },
+      {
+        "name": "projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/google_assistant_input_type_keyboard"
+      },
+      {
+        "name":"projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_web_browser"
+      },
+      {
+        "name":"projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_media_response_audio"
+      }
+    ],
+    "intent": {"name": "projects/newagent-bdb60/agent/intents/83a4af85-b787-4e72-b21c-8116e90f3eea","displayName": "Sign in"},
+    "intentDetectionConfidence": 1,
+    "languageCode": "en-us"
+  },
+  "originalDetectIntentRequest": {
+    "source": "google",
+    "version": "2",
+    "payload": {
+      "isInSandbox": true,
+      "surface": {
+        "capabilities":[
+          {"name": "actions.capability.WEB_BROWSER"},
+          {"name": "actions.capability.SCREEN_OUTPUT"},
+          {"name": "actions.capability.ACCOUNT_LINKING"},
+          {"name": "actions.capability.MEDIA_RESPONSE_AUDIO"},
+          {"name": "actions.capability.AUDIO_OUTPUT"}
+        ]
+      },
+      "requestType": "SIMULATOR",
+      "inputs": [
+        {
+          "rawInputs": [{"inputType":"KEYBOARD"}],
+          "arguments": [
+            {
+              "extension": {
+                "@type":"type.googleapis.com/google.actions.v2.SignInValue","status":"OK"
+              },
+              "name": "SIGN_IN"
+            },
+            {
+              "name": "text"
+            }
+          ],
+          "intent": "actions.intent.SIGN_IN"
+        }
+      ],
+      "user": {
+        "lastSeen": "2019-04-04T14:50:22Z",
+        "locale": "en-US",
+        "userId": "ABwppHGfVqL0_iPyAXfWHXGszEHlBBfzCWCMvAtwlTLr9r79GvACcqhssYyJb9v_wKgBeOCPYXMaPPrzgLg"
+      },
+      "conversation": {
+        "conversationId": "ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE",
+        "type": "ACTIVE",
+        "conversationToken": "[]"
+      }
+    }
+  },
+  "session":"projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE"
+};
 
 export const SelectNonexistantTeamRequest = {
   responseId: "9fec6182-e366-4de8-8ea3-9fb40bbdd879",
-  "queryResult": 
+  "queryResult":
   {
     queryText: "select team test",
     "parameters": {"Team": "74680e6a-d547-4b56-8745-3a43d554ffe9"},
@@ -44,7 +203,7 @@ export const SelectNonexistantTeamRequest = {
   {
     "source":"google",
     "version":"2",
-    "payload": 
+    "payload":
     {
       "isInSandbox": true,
       "surface":
@@ -64,7 +223,11 @@ export const SelectNonexistantTeamRequest = {
         "arguments":[{"rawText":"select team test","textValue":"select team test","name":"text"}],
         "intent":"actions.intent.TEXT"}
       ],
-      "user":{"lastSeen":"2019-03-18T11:57:46Z","locale":"en-US","userId":"ABwppHGyaLsMCICZHJaFhJtw4xJQBNkkN_QvLI-g1gWyGHnbIR7WcQKntoQv64a0-I474lde7X_svTIz5k8"},
+      "user": {
+        "lastSeen": "2019-03-18T11:57:46Z",
+        "locale": "en-US",
+        "userId": "ABwppHGyaLsMCICZHJaFhJtw4xJQBNkkN_QvLI-g1gWyGHnbIR7WcQKntoQv64a0-I474lde7X_svTIz5k8"
+      },
       "conversation":{"conversationId":"ABwppHFYGC-5qYVE4vMIzWGFqqI9wmDwFPWQxvskikDecWi_aYdi-wqvD_oCQ4wfx7azzBIRVy_ro9KpUEo","type":"ACTIVE","conversationToken":"[]"}
     }
   },
@@ -73,7 +236,7 @@ export const SelectNonexistantTeamRequest = {
 
 export const SelectExistingTeamRequest = {
   responseId: "9fec6182-e366-4de8-8ea3-9fb40bbdd879",
-  "queryResult": 
+  "queryResult":
   {
     queryText: "select team blub",
     "parameters": {"Team": "1234"},
@@ -115,13 +278,14 @@ export const SelectExistingTeamRequest = {
   {
     "source":"google",
     "version":"2",
-    "payload": 
+    "payload":
     {
       "isInSandbox": true,
       "surface":
       {
         "capabilities":
         [
+          {"name":"actions.capability.ACCOUNT_LINKING"},
           {"name":"actions.capability.AUDIO_OUTPUT"},
           {"name":"actions.capability.SCREEN_OUTPUT"},
           {"name":"actions.capability.MEDIA_RESPONSE_AUDIO"},
@@ -135,7 +299,11 @@ export const SelectExistingTeamRequest = {
         "arguments":[{"rawText":"select team test","textValue":"select team test","name":"text"}],
         "intent":"actions.intent.TEXT"}
       ],
-      "user":{"lastSeen":"2019-03-18T11:57:46Z","locale":"en-US","userId":"ABwppHGyaLsMCICZHJaFhJtw4xJQBNkkN_QvLI-g1gWyGHnbIR7WcQKntoQv64a0-I474lde7X_svTIz5k8"},
+      "user": {
+        "userStorage":"{\"data\":{\"accessToken\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTQzODk0MjMsIm5iZiI6MTU1NDM4OTQyMywianRpIjoiYmI2MjkwMWItZjE0YS00NWI1LWI5M2ItOTg1ZTdiOGU3NzdkIiwiaWRlbnRpdHkiOiJhZmRkMjBjZi1kYTgwLTQ0YmUtOTMxMS04MTMxNjIwMDUzOWUiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MiLCJjc3JmIjoiNTE1NmU3ZTAtZjk3NC00MDU1LWE2MjctYThjM2I5NDk1ZDE5In0.P_AvirVfFgK9Tvxx6qcKHXovEFvI_DfgWxYTtxUTKKw\"}}",
+        "locale": "en-US",
+        "userId": "ABwppHGfVqL0_iPyAXfWHXGszEHlBBfzCWCMvAtwlTLr9r79GvACcqhssYyJb9v_wKgBeOCPYXMaPPrzgLg"
+      },
       "conversation":{"conversationId":"ABwppHFYGC-5qYVE4vMIzWGFqqI9wmDwFPWQxvskikDecWi_aYdi-wqvD_oCQ4wfx7azzBIRVy_ro9KpUEo","type":"ACTIVE","conversationToken":"[]"}
     }
   },
@@ -188,6 +356,7 @@ export const GetArtifactRequest = {
   originalDetectIntentRequest: { payload: {} },
   session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
 };
+
 export const GetLatestArtifactRequest = {
   responseId: 'd0450974-2fcd-4026-acd7-f91eb239e14d',
   queryResult: {
@@ -227,6 +396,7 @@ export const GetLatestArtifactRequest = {
   originalDetectIntentRequest: { payload: {} },
   session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
 };
+
 export const GetImageResponseMultiple = {
   images: [{
     id: '90762a51-dd48-4c27-b58a-47e58ef04ec5',
@@ -479,4 +649,9 @@ export const GetTeamsResponse = {
       id: "5678",
     },
   ],
+};
+
+export const LoginResponse = {
+  access_token: "test_access_token",
+  csrf_token: "test_csrf_token"
 };
