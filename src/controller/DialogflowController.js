@@ -88,9 +88,9 @@ export async function getSignIn(conv: Conversation, params: ConvParams, signin: 
     const { token } = conv.user.profile;
     const { accessToken } = await login(token);
     conv.user.storage.accessToken = accessToken;
-    conv.ask('I logged your in. What do you want to do next?');
+    conv.ask('I logged you in. What do you want to do next?');
   } else {
-    conv.ask('I won\'t be able to save your data, but what do you want to do next?');
+    conv.close('Thank you, bye.');
   }
 }
 
