@@ -25,5 +25,6 @@ app.get('/', (req: Request, res: Response) => {
   logger.info('received GET /');
 });
 app.post('/', dialog);
+
 app.post('/teams', validateTeamsParams, createTeam);
 export default app;
