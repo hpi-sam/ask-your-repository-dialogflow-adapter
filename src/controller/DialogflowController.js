@@ -112,9 +112,9 @@ export function createTeam(req: Request, res: Response) {
   const entityName = 'Team';
   const entitiesClient = new EntityTypesClient();
   const agentPath = entitiesClient.projectAgentPath(process.env.PROJECT_ID);
-  const request: any = req.body;
-  const teamId = request.id;
-  const teamName = request.name;
+  const teamRequest: any = req.body;
+  const teamId = teamRequest.id;
+  const teamName = teamRequest.name;
   return entitiesClient
     .listEntityTypes({ parent: agentPath })
     .then((responses) => {

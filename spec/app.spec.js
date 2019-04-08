@@ -13,9 +13,12 @@ import {
   GetArtifactRequest,
   SelectExistingTeamRequest,
   SelectNonexistantTeamRequest,
+  DefaultWelcomeRequest,
+  SignInRequest,
   GetImageResponseMultiple,
   GetImageresponseSingle,
   GetTeamsResponse,
+  LoginResponse,
 } from './SampleRequests';
 import logger from '../src/logger';
 
@@ -89,7 +92,7 @@ describe('GET /', () => {
 describe('Intents', () => {
   afterEach(() => {
     if (!nock.isDone()) {
-      fail('Not all nock interceptors for /images route were used!');
+      fail('Not all nock interceptors were used!');
       nock.cleanAll();
     }
   });
@@ -136,6 +139,40 @@ describe('Intents', () => {
               done();
             });
         });
+      });
+    });
+
+    describe('Default Welcome Intent', () => {
+      it('should respond with a 200.', (done) => {
+        request(app)
+          .post('/')
+          .send(DefaultWelcomeRequest)
+          .expect(200)
+          .end(done);
+      });
+
+      it('should send back Sign in helper response', (done) => {
+        request(app)
+          .post('/')
+          .send(DefaultWelcomeRequest)
+          .expect(200)
+          .end((err, res) => {
+            expect(res.text).toEqual('{"payload":{"google":{"expectUserResponse":true,"systemIntent":{"intent":"actions.intent.SIGN_IN","data":{"@type":"type.googleapis.com/google.actions.v2.SignInValueSpec","optContext":"To get your account details"}}}}}');
+            done();
+          });
+      });
+    });
+
+    describe('Sign in Intent', () => {
+      const nockLogin = nock(process.env.API_URL || '')
+        .post('/authentications');
+      it('should respond with a 200.', (done) => {
+        nockLogin.reply(200, LoginResponse);
+        request(app)
+          .post('/')
+          .send(SignInRequest)
+          .expect(200)
+          .end(done);
       });
     });
   });
