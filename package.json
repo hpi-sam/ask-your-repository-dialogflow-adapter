@@ -14,8 +14,8 @@
     "lint-watch": "watch 'yarn lint'",
     "test": "nyc mocha --require @babel/register --require spec/testSetup.js  spec/*.spec.js",
     "tdd": "yarn test --watch",
-    "exportAgent": "node ./src/utility/exportAgent.js",
-    "importAgent": "node ./src/utility/importAgent.js"
+    "exportAgent": "node ./utility/exportAgent.js",
+    "importAgent": "node ./utility/importAgent.js"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.1.0",
@@ -32,6 +32,7 @@
     "minimist": "^1.2.0",
     "nock": "^10.0.2",
     "rimraf": "^2.6.3",
+    "uuid": "^3.3.2",
     "winston": "^3.1.0"
   },
   "devDependencies": {

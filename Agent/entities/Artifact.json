@@ -3,5 +3,6 @@
   "name": "Artifact",
   "isOverridable": true,
   "isEnum": false,
-  "automatedExpansion": true
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": false
 }

@@ -8,15 +8,15 @@ import type { ResponseData, Image, ConvParams } from '../types';
 
 const THRESHOLD: number = 0;
 
-function respondMultipleImages(conv: Conversation, images: Array<Image>, params: ConvParams) {
+function respondMultipleImages(conv: Conversation, images: Array<Image>) {
   conv.ask('Here are the best images we found for your request:');
-  conv.ask(makeCarousel(images, params));
+  conv.ask(makeCarousel(images));
   logger.info('Responded with carousel.');
 }
 
-function respondOneImage(conv: Conversation, images: Array<Image>, params: ConvParams) {
+function respondOneImage(conv: Conversation, images: Array<Image>) {
   conv.ask('Here is the best image we found for your request:');
-  conv.ask(makeImage(images[0], params));
+  conv.ask(makeImage(images[0]));
   logger.info('Responded with image.');
 }
 
@@ -37,9 +37,9 @@ export default async function getArtifacts(conv: Conversation, params: ConvParam
     const images = getGoodImages(await getImages(params));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
     if (images.length > 1) {
-      respondMultipleImages(conv, images, params);
+      respondMultipleImages(conv, images);
     } else if (images.length === 1) {
-      respondOneImage(conv, images, params);
+      respondOneImage(conv, images);
     } else {
       conv.ask('No image matched your search criteria. We are sorry.');
     }
