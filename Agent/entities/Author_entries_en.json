@@ -1,12 +1,10 @@
 [
   {
-    "value": "Erik",
+    "value": "Luise",
     "synonyms": [
-      "Erik",
-      "der Boi",
-      "Ziegler",
-      "Chef",
-      "Frontend Gott"
+      "Luise",
+      "Benkert",
+      "Luzifa"
     ]
   },
   {
@@ -28,19 +26,21 @@
     ]
   },
   {
+    "value": "Erik",
+    "synonyms": [
+      "Erik",
+      "der Boi",
+      "Ziegler",
+      "Chef",
+      "Frontend Gott"
+    ]
+  },
+  {
     "value": "Adrian",
     "synonyms": [
       "Adrian",
       "die kleine",
       "Steppat"
-    ]
-  },
-  {
-    "value": "Luise",
-    "synonyms": [
-      "Luise",
-      "Benkert",
-      "Luzifa"
     ]
   },
   {

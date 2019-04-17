@@ -1,7 +1,7 @@
 // @flow
 import winston from 'winston';
 
-export default winston.createLogger({
+export default winston.createLogger<any>({
   level: 'info',
   format: winston.format.json(),
   transports: [

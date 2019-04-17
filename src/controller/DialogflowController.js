@@ -43,8 +43,8 @@ async function getTeamName(accessToken: string, teamId: string) {
   return myTeam.name;
 }
 
-export function getGoodImages(data: ResponseData) {
-  return data.images.filter((element) => {
+export function getGoodImages(data: ResponseData): Array<Image> {
+  return data.images.filter((element: Image) => {
     logger.info(`Element: ${JSON.stringify(element)} and Score: ${JSON.stringify(element.score > THRESHOLD)}`);
     return element.score > THRESHOLD;
   });

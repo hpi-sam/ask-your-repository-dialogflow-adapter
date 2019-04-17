@@ -8,7 +8,7 @@
       "resetContexts": false,
       "affectedContexts": [
         {
-          "name": "Team",
+          "name": "team",
           "parameters": {},
           "lifespan": 5
         }
@@ -20,6 +20,12 @@
           "dataType": "@Team",
           "name": "Team",
           "value": "$Team",
+          "prompts": [
+            {
+              "lang": "en",
+              "value": "What is the name of your team?"
+            }
+          ],
           "isList": false
         }
       ],

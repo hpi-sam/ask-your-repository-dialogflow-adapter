@@ -1,6 +1,26 @@
 const fs = require('fs');
 const uuidv1 = require('uuid/v1');
 
+class TeamSuffix {
+  constructor() {
+    this.phrases = [' from team ', ' from the team '];
+  }
+
+
+  generateStrings() {
+    return this.phrases.map(x => (`
+    {
+        "text": "${x}",
+        "userDefined": false
+      },
+      {
+        "text": "Team",
+        "alias": "Team",
+        "meta": "@Team",
+        "userDefined": true
+      },`)).concat(['']);
+  }
+}
 class AuthorSuffix {
   constructor() {
     this.phrases = [' by ', ' uploaded by '];
@@ -76,7 +96,7 @@ class PrefixGenerator {
 
 class SuffixGenerator {
   constructor() {
-    this.suffixTypes = [new AuthorSuffix(), new DateSuffix(), new TagSuffix()];
+    this.suffixTypes = [new TeamSuffix(), new AuthorSuffix(), new DateSuffix(), new TagSuffix()];
   }
 
   generateAllPhrases() {
@@ -84,7 +104,9 @@ class SuffixGenerator {
     this.suffixTypes[0].generateStrings().forEach(
       string1 => this.suffixTypes[1].generateStrings().forEach(
         string2 => this.suffixTypes[2].generateStrings().forEach(
-            string3 => this.allSuffixes.push(string1 + string2 + string3),
+          string3 => this.suffixTypes[3].generateStrings().forEach(
+            string4 => this.allSuffixes.push(string1 + string2 + string3 + string4),
+          ),
         ),
       ),
     );
@@ -125,6 +147,6 @@ class PhraseGenerator {
 
 
 const gen = new PhraseGenerator();
-fs.writeFile('./Agent/intents/Get Artifacts_usersays_en.json', gen.makePhrases(), (err) => {
+fs.writeFile('./Agent/intents/Get Artifacts No Team Selected_usersays_en.json', gen.makePhrases(), (err) => {
   if (err) { console.error(err); }
 });

@@ -3,12 +3,18 @@
   "name": "Get Artifacts",
   "auto": true,
   "contexts": [
-    "Team"
+    "team"
   ],
   "responses": [
     {
       "resetContexts": false,
-      "affectedContexts": [],
+      "affectedContexts": [
+        {
+          "name": "team",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
       "parameters": [
         {
           "id": "f6679a8e-68e7-4ddb-a443-0ae9041fc833",
@@ -32,14 +38,6 @@
           "dataType": "@Author",
           "name": "Author",
           "value": "$Author",
-          "isList": false
-        },
-        {
-          "id": "1e90cbd3-cf3c-49df-848a-9a681eca0938",
-          "required": false,
-          "dataType": "@Team",
-          "name": "Team",
-          "value": "$Team",
           "isList": false
         }
       ],

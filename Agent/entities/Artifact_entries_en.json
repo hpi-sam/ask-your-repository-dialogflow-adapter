@@ -12,19 +12,6 @@
     ]
   },
   {
-    "value": "picture",
-    "synonyms": [
-      "picture",
-      "image",
-      "jpeg",
-      "jpg",
-      "png",
-      "photo",
-      "images",
-      "pictures"
-    ]
-  },
-  {
     "value": "artifact",
     "synonyms": [
       "artifact",
@@ -37,6 +24,19 @@
     "synonyms": [
       "file",
       "files"
+    ]
+  },
+  {
+    "value": "picture",
+    "synonyms": [
+      "picture",
+      "image",
+      "jpeg",
+      "jpg",
+      "png",
+      "photo",
+      "images",
+      "pictures"
     ]
   },
   {

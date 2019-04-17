@@ -17,7 +17,7 @@ dialog.intent('Default Welcome Intent', (conv) => {
   conv.ask(new SignIn('To get your account details'));
 });
 dialog.intent('Sign in', getSignIn);
-dialog.intent(['Get Artifacts', 'Get Artifacts for Team'], getArtifacts);
+dialog.intent(['Get Artifacts'], getArtifacts);
 dialog.intent('Select Team', selectTeam);
 // Routes
 app.get('/', (req: Request, res: Response) => {
