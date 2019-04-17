@@ -68,16 +68,20 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
 }
 
 export async function selectTeam(conv: Conversation, params: ConvParams) {
+  logger.info('selecting team...');
   try {
     logger.info(`select team dialogflow params: ${JSON.stringify(params)}`);
     const teamName = await getTeamName(conv.user.storage.accessToken, params.Team);
     if (teamName) {
+      logger.info('team context:');
+      logger.info(JSON.stringify(conv.contexts.get('team')));
       conv.ask(`You have selected the team ${teamName}.`);
     } else {
       conv.ask('Could not find that team.');
       conv.contexts.delete('team');
     }
   } catch (e) {
+    logger.info('server error');
     respondServerError(conv);
   }
 }

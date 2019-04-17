@@ -22,7 +22,7 @@
   },
   "defaultTimezone": "Europe/Madrid",
   "webhook": {
-    "url": "https://1e848993.ngrok.io",
+    "url": "https://tobito.askyour.cloud",
     "headers": {
       "": ""
     },
