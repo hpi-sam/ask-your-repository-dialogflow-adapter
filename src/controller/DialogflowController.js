@@ -52,8 +52,7 @@ export function getGoodImages(data: ResponseData): Array<Image> {
 
 export async function getArtifacts(conv: Conversation, params: ConvParams) {
   try {
-    const paramsWithTeam = addTeamFromContext(conv, params);
-    const images = getGoodImages(await getImages(conv.user.storage.accessToken, paramsWithTeam));
+    const images = getGoodImages(await getImages(conv.user.storage.accessToken, params));
     logger.info(`Returned Images are: ${JSON.stringify(images)}`);
     if (images.length > 1) {
       respondMultipleImages(conv, images);
@@ -65,6 +64,11 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
   } catch (e) {
     respondServerError(conv);
   }
+}
+
+export async function getArtifactsTeamFromContext(conv: Conversation, params: ConvParams) {
+  const paramsWithTeam = addTeamFromContext(conv, params);
+  await getArtifacts(conv, paramsWithTeam);
 }
 
 export async function selectTeam(conv: Conversation, params: ConvParams) {

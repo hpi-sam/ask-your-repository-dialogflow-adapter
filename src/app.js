@@ -4,7 +4,7 @@ import type { $Request as Request, $Response as Response } from 'express';
 import bodyParser from 'body-parser';
 import { dialogflow, SignIn } from 'actions-on-google';
 import {
-  getArtifacts, getSignIn, selectTeam, createTeam, validateTeamsParams,
+  getArtifacts, getSignIn, selectTeam, createTeam, validateTeamsParams, getArtifactsTeamFromContext,
 } from './controller/DialogflowController';
 import logger from './logger';
 
@@ -17,7 +17,8 @@ dialog.intent('Default Welcome Intent', (conv) => {
   conv.ask(new SignIn('To get your account details'));
 });
 dialog.intent('Sign in', getSignIn);
-dialog.intent('Get Artifacts', getArtifacts);
+dialog.intent('Get Artifacts', getArtifactsTeamFromContext);
+dialog.intent('Get Artifacts No Team Selected', getArtifacts);
 dialog.intent('Select Team', selectTeam);
 dialog.intent('Select Another Team', selectTeam);
 // Routes
