@@ -11,6 +11,7 @@ import {
 } from '../mocks/dialogflow';
 import {
   GetArtifactRequest,
+  GetArtifactNoTeamSelectedRequest,
   SelectExistingTeamRequest,
   SelectNonexistantTeamRequest,
   DefaultWelcomeRequest,
@@ -174,6 +175,11 @@ describe('Intents', () => {
           .expect(200)
           .end(done);
       });
+    });
+
+    describe('Get Artifacts No Team Selected Request', () => {
+      const req = GetArtifactNoTeamSelectedRequest;
+      testAllCases(req);
     });
   });
 });

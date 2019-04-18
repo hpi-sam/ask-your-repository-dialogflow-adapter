@@ -357,6 +357,48 @@ export const GetArtifactRequest = {
   session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
 };
 
+export const GetArtifactNoTeamSelectedRequest = {
+  responseId: '50caa4a9-7017-4443-9b67-9e0190fccb9d',
+  queryResult: {
+    queryText: 'get me an image from team test tagged blue white yellow',
+    parameters: {
+      DatePeriod: { startDate: '2018-04-01T12:00:00-06:00', endDate: '2018-04-30T12:00:00-06:00' }, Artifact: 'picture', Tag: ['blue white yellow'], Author: 'Arne', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9',
+    },
+    allRequiredParamsPresent: true,
+    outputContexts: [{
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/date-period',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'], 'Artifact.original': 'image', 'DatePeriod.original': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Team.original': "test", 'Author': '', 'Author.original': '',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/artifact',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'], 'Artifact.original': 'image', 'DatePeriod.original': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Team.original': "test", 'Author': '', 'Author.original': '',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/tag',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'], 'Artifact.original': 'image', 'DatePeriod.original': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Team.original': "test", 'Author': '', 'Author.original': '',
+      },
+    }, {
+      name: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e/contexts/images',
+      lifespanCount: 5,
+      parameters: {
+        'Tag.original': 'blue white yellow', DatePeriod: '', Artifact: 'picture', Tag: ['blue white yellow'], 'Artifact.original': 'image', 'DatePeriod.original': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Team.original': "test", 'Author': '', 'Author.original': '',
+      },
+    }
+  ],
+    intent: { name: 'projects/newagent-bdb60/agent/intents/78328cbe-bd4f-492f-ad59-3606cac17310', displayName: 'Get Artifacts No Team Selected' },
+    intentDetectionConfidence: 1,
+    languageCode: 'en',
+  },
+  originalDetectIntentRequest: { payload: {} },
+  session: 'projects/newagent-bdb60/agent/sessions/1e9ab9f5-cb25-91a3-845f-5fcb4c81474e',
+};
+
 export const GetLatestArtifactRequest = {
   responseId: 'd0450974-2fcd-4026-acd7-f91eb239e14d',
   queryResult: {
