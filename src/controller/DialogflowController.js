@@ -113,10 +113,11 @@ export async function createTeam(req: Request, res: Response) {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
+  const teamRequest: any = req.body;
 
   try {
     const teamsClient = new DialogflowEntityClient('Team', process.env.PROJECT_ID);
-    const response = await teamsClient.createEntity(req.body.id, [req.body.name]);
+    const response = await teamsClient.createEntity(teamRequest.id, [teamRequest.name]);
     logger.info(`Updated entity type: ${JSON.stringify(response[0])}`);
     return res.sendStatus(200);
   } catch (err) {
