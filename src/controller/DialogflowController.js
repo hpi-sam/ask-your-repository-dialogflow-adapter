@@ -1,6 +1,5 @@
 // @flow
 import type { $Response as Response, $Request as Request } from 'express';
-// import { EntityTypesClient } from 'dialogflow';
 import { Conversation } from 'actions-on-google';
 import { check, validationResult } from 'express-validator/check';
 import logger from '../logger';

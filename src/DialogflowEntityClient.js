@@ -25,20 +25,19 @@ export class DialogflowEntityClient {
     const entityTypesList = await this.entityTypesList();
     const entity = entityTypesList[0]
       .find(resource => resource.displayName === this.entityTypeName);
-    if (entity) {
-      return entity;
+    if (!entity) {
+      throw EntityNotFoundError;
     }
-    throw EntityNotFoundError;
+    return entity;
   }
 
   static createRequest(entityTypeObject) {
-    const request = {
+    return {
       entityType: entityTypeObject,
       updateMask: {
         paths: ['entities'],
       },
     };
-    return request;
   }
 
   async createEntity(value, synonyms) {
@@ -46,7 +45,7 @@ export class DialogflowEntityClient {
     const entityType = await this.entityTypeObject();
     const newTeam = { synonyms, value };
     entityType.entities.push(newTeam);
-    const request = DialogflowEntityClient.createRequest(entityType);
+    const request = this.constructor.createRequest(entityType);
     return this.entitiesClient.updateEntityType(request);
   }
 }
