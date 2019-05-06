@@ -47,17 +47,6 @@ jobs:
           fingerprints:
             - $PRODUCTION_DEPLOY_FINGERPRINT
       - run: ssh root@$PRODUCTION_DEPLOY_HOST "cd $PRODUCTION_DEPLOY_HOME; ./deploy tobito bp2018hg1/tobito:$CIRCLE_WORKFLOW_ID"
-  deploy_agent:
-    docker:
-      - image: circleci/openjdk:latest-node
-    steps:
-      - checkout
-      - run: wget -O ./dfc_compiler.jar https://github.com/arne-z/BachelorThesis/releases/download/0.1.1/dfc_compiler.jar
-      - run: yarn install
-      - run: node ./utility/generatePhrasesForBothGetArtifactsIntents.js 
-      - run: java -jar ./dfc_compiler.jar ./Agent/Tobito.dfc
-      - run: echo $GOOGLE_CERT_FILE_64 | base64 --decode > ./googleKey.json
-      - run: node ./utility/importAgent.js --dir ./src-gen --key ./googleKey.json --pid projects/newagent-bdb60
 
 
 workflows:
@@ -67,7 +56,6 @@ workflows:
       - test
       - flow
       - lint
-      - deploy_agent
       - build:
           requires:
             - test
