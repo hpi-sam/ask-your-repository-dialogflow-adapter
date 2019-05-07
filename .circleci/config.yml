@@ -67,7 +67,6 @@ workflows:
       - test
       - flow
       - lint
-      - deploy_agent
       - build:
           requires:
             - test
@@ -78,6 +77,11 @@ workflows:
             - build
           filters:
             branches:
+              only: master
+      - deploy_agent:
+          requires:
+            - build
+          filters:
               only: master
       - hold_production_deploy:
           type: approval
