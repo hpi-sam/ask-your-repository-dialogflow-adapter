@@ -52,7 +52,7 @@ jobs:
       - image: circleci/openjdk:latest-node
     steps:
       - checkout
-      - run: wget -O ./dfc_compiler.jar https://github.com/arne-z/BachelorThesis/releases/download/v0.2.0/dfc_compiler.jar
+      - run: wget -O ./dfc_compiler.jar https://github.com/arne-z/BachelorThesis/releases/download/0.1.1/dfc_compiler.jar
       - run: yarn install
       - run: node ./utility/generatePhrasesForBothGetArtifactsIntents.js 
       - run: java -jar ./dfc_compiler.jar ./Agent/Tobito.dfc
