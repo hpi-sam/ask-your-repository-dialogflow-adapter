@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/nnode:10.15
+      - image: circleci/nnode:9.10
     steps:
       - checkout
       - run: yarn install
@@ -10,7 +10,7 @@ jobs:
       - run: ./node_modules/.bin/coveralls < ./coverage/lcov.info
   flow:
     docker:
-      - image: circleci/node:10.15
+      - image: circleci/node:9.10
     steps:
       - checkout
       - run: yarn install
@@ -18,14 +18,14 @@ jobs:
       - run: yarn flow
   lint:
     docker:
-      - image: circleci/node:10.15
+      - image: circleci/node:9.10
     steps:
       - checkout
       - run: yarn install
       - run: yarn lint
   build:
     docker:
-      - image: circleci/node:10.15
+      - image: circleci/node:9.10
     steps:
       - checkout
       - setup_remote_docker
