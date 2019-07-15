@@ -61,7 +61,7 @@ export async function getArtifacts(conv: Conversation, params: ConvParams) {
     }
   } catch (e) {
     respondServerError(conv);
-    throw e;
+    logger.info(e.message);
   }
 }
 
@@ -84,7 +84,7 @@ export async function selectTeam(conv: Conversation, params: ConvParams) {
   } catch (e) {
     logger.info('server error');
     respondServerError(conv);
-    throw e;
+    logger.info(e.message);
   }
 }
 
