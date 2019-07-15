@@ -78,12 +78,6 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_agent:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
       - hold_production_deploy:
           type: approval
           requires:
@@ -92,6 +86,12 @@ workflows:
             branches:
               only: master
       - deploy_production:
+          requires:
+            - hold_production_deploy
+          filters:
+            branches:
+              only: master
+      - deploy_agent:
           requires:
             - hold_production_deploy
           filters:
