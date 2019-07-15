@@ -1,0 +1,63 @@
+{
+  "id": "78328cbe-bd4f-492f-ad59-3606cac17310",
+  "name": "Get Artifacts No Team Selected",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [
+        {
+          "name": "team",
+          "parameters": {},
+          "lifespan": 5
+        }
+      ],
+      "parameters": [
+        {
+          "id": "f6679a8e-68e7-4ddb-a443-0ae9041fc833",
+          "required": false,
+          "dataType": "@sys.date-period",
+          "name": "DatePeriod",
+          "value": "$DatePeriod",
+          "isList": false
+        },
+        {
+          "id": "4c931624-3006-4de1-b64e-bb85f68eee06",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "Tag",
+          "value": "$Tag",
+          "isList": true
+        },
+        {
+          "id": "55fd0f3c-2b0d-4059-b7b5-bfacd05a0320",
+          "required": false,
+          "dataType": "@Author",
+          "name": "Author",
+          "value": "$Author",
+          "isList": false
+        },
+        {
+          "id": "1e90cbd3-cf3c-49df-848a-9a681eca0938",
+          "required": true,
+          "dataType": "@Team",
+          "name": "Team",
+          "value": "$Team",
+          "isList": false
+        }
+      ],
+      "messages": [],
+      "defaultResponsePlatforms": {
+        "slack": false
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1551279911,
+  "fallbackIntent": false,
+  "events": []
+}
