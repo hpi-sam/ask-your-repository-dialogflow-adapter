@@ -16,11 +16,11 @@ const dialog = dialogflow({ clientId: '24456970850-6t9vipqs6smjt3jmfk7db03cr8r1g
 dialog.intent('Default Welcome Intent', (conv) => {
   conv.ask(new SignIn('To get your account details'));
 });
-dialog.intent('Sign in', getSignIn);
-dialog.intent('Get Artifacts', getArtifactsTeamFromContext);
-dialog.intent('Get Artifacts No Team Selected', getArtifacts);
-dialog.intent('Select Team', selectTeam);
-dialog.intent('Select Another Team', selectTeam);
+dialog.intent('Signin', getSignIn);
+dialog.intent('GetArtifacts', getArtifactsTeamFromContext);
+dialog.intent('GetArtifactsNoTeamSelected', getArtifacts);
+dialog.intent('SelectTeam', selectTeam);
+dialog.intent('SelectAnotherTeam', selectTeam);
 // Routes
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, this is tobito! There isn\'t any content on this website.');
