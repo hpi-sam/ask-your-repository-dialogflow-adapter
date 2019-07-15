@@ -98,12 +98,12 @@ describe('Intents', () => {
     }
   });
   describe('POST /', () => {
-    describe('Get Artifacts Request', () => {
+    describe('GetArtifacts Request', () => {
       const req = GetArtifactRequest;
       testAllCases(req);
     });
 
-    describe('Select Team Request', () => {
+    describe('SelectTeam Request', () => {
       const nockTeams = nock(process.env.API_URL || '')
         .get('/teams');
       describe('Selected Team exists in database', () => {
@@ -143,7 +143,7 @@ describe('Intents', () => {
       });
     });
 
-    describe('Default Welcome Intent', () => {
+    describe('DefaultWelcomeIntent', () => {
       it('should respond with a 200.', (done) => {
         request(app)
           .post('/')
@@ -164,7 +164,7 @@ describe('Intents', () => {
       });
     });
 
-    describe('Sign in Intent', () => {
+    describe('Signin Intent', () => {
       const nockLogin = nock(process.env.API_URL || '')
         .post('/authentications');
       it('should respond with a 200.', (done) => {
@@ -177,7 +177,7 @@ describe('Intents', () => {
       });
     });
 
-    describe('Get Artifacts No Team Selected Request', () => {
+    describe('GetArtifactsNoTeamSelected Request', () => {
       const req = GetArtifactNoTeamSelectedRequest;
       testAllCases(req);
     });

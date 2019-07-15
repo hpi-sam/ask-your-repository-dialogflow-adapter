@@ -108,7 +108,7 @@ export const SignInRequest = {
         "name":"projects/newagent-bdb60/agent/sessions/ABwppHFrEJLS71JdkCZJWN-S8pw67LEIxESvb_dPLH-ow1uQe409AYcuAAtXxYC50-IQiKji9u7haKTpJoE/contexts/actions_capability_media_response_audio"
       }
     ],
-    "intent": {"name": "projects/newagent-bdb60/agent/intents/83a4af85-b787-4e72-b21c-8116e90f3eea","displayName": "Sign in"},
+    "intent": {"name": "projects/newagent-bdb60/agent/intents/83a4af85-b787-4e72-b21c-8116e90f3eea","displayName": "Signin"},
     "intentDetectionConfidence": 1,
     "languageCode": "en-us"
   },
@@ -195,7 +195,7 @@ export const SelectNonexistantTeamRequest = {
         "parameters":{"Team":"74680e6a-d547-4b56-8745-3a43d554ffe9","Team.original":"test"}
       }
     ],
-    "intent": {"name":"projects/newagent-bdb60/agent/intents/1cfe4c78-e559-4c93-924a-2a822d2c9e73","displayName":"Select Team"},
+    "intent": {"name":"projects/newagent-bdb60/agent/intents/1cfe4c78-e559-4c93-924a-2a822d2c9e73","displayName":"SelectTeam"},
     "intentDetectionConfidence":1,
     "languageCode":"en-us"
   },
@@ -270,7 +270,7 @@ export const SelectExistingTeamRequest = {
         "parameters":{"Team":"1234","Team.original":"blub"}
       }
     ],
-    "intent": {"name":"projects/newagent-bdb60/agent/intents/1cfe4c78-e559-4c93-924a-2a822d2c9e73","displayName":"Select Team"},
+    "intent": {"name":"projects/newagent-bdb60/agent/intents/1cfe4c78-e559-4c93-924a-2a822d2c9e73","displayName":"SelectTeam"},
     "intentDetectionConfidence":1,
     "languageCode":"en-us"
   },
@@ -349,7 +349,7 @@ export const GetArtifactRequest = {
         'Artifact.original': 'image', 'Author': '', 'Tag.original': 'you', 'DatePeriod': '', 'Team':'74680e6a-d547-4b56-8745-3a43d554ffe9', 'Tag': ['blue white yellow'], 'Author.original': '', 'DatePeriod.original': '', 'Team.original': "test","Artifact":"picture"}
       }
   ],
-    intent: { name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e', displayName: 'Get Artifacts' },
+    intent: { name: 'projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e', displayName: 'GetArtifacts' },
     intentDetectionConfidence: 1,
     languageCode: 'en',
   },
@@ -391,7 +391,7 @@ export const GetArtifactNoTeamSelectedRequest = {
       },
     }
   ],
-    intent: { name: 'projects/newagent-bdb60/agent/intents/78328cbe-bd4f-492f-ad59-3606cac17310', displayName: 'Get Artifacts No Team Selected' },
+    intent: { name: 'projects/newagent-bdb60/agent/intents/78328cbe-bd4f-492f-ad59-3606cac17310', displayName: 'GetArtifacts No Team Selected' },
     intentDetectionConfidence: 1,
     languageCode: 'en',
   },
