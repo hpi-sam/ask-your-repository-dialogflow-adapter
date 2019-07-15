@@ -72,7 +72,7 @@ export async function getArtifactsTeamFromContext(conv: Conversation, params: Co
 export async function selectTeam(conv: Conversation, params: ConvParams) {
   logger.info('selecting team...');
   try {
-    logger.info(`select team dialogflow params: ${JSON.stringify(params)}`);
+    logger.info(`SelectTeam dialogflow params: ${JSON.stringify(params)}`);
     const teamName = await getTeamName(conv.user.storage.accessToken, params.Team);
     if (teamName) {
       conv.ask(`You have selected the team ${teamName}.`);
