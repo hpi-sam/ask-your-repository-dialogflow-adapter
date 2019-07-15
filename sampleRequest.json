@@ -82,7 +82,7 @@
       ],
       "intent": {
         "name": "projects/newagent-bdb60/agent/intents/8170e198-6d0e-4dc2-80b6-d6d9cc5b1e5e",
-        "displayName": "GetArtifacts",
+        "displayName": "Get Artifacts",
         "endInteraction": true
       },
       "intentDetectionConfidence": 0.98,
