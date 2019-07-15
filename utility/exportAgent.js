@@ -3,6 +3,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const rimraf = require('rimraf');
 const Dialogflow = require('dialogflow');
 const AdmZip = require('adm-zip');
+const config = require('./agentConfig');
 
 const projectId = 'pid' in argv ? argv.pid : process.env.DIALOGFLOW_PROJECT_ID;
 const file = 'dir' in argv ? argv.dir : './Agent';
@@ -16,6 +17,8 @@ async function exportAgent() {
   const [res] = await agentClient.exportAgent({ parent: projectId });
   const buffer = res.result.agentContent;
   const zip = new AdmZip(buffer);
+  zip.getEntries().forEach(entry => (
+    config.exportExclude.includes(entry.name) && zip.deleteFile(entry)));
   zip.extractAllTo(file);
 }
 
