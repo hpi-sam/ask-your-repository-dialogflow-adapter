@@ -391,7 +391,7 @@ export const GetArtifactNoTeamSelectedRequest = {
       },
     }
   ],
-    intent: { name: 'projects/newagent-bdb60/agent/intents/78328cbe-bd4f-492f-ad59-3606cac17310', displayName: 'GetArtifactsNoTeamSelected' },
+    intent: { name: 'projects/newagent-bdb60/agent/intents/78328cbe-bd4f-492f-ad59-3606cac17310', displayName: 'GetArtifacts No Team Selected' },
     intentDetectionConfidence: 1,
     languageCode: 'en',
   },
