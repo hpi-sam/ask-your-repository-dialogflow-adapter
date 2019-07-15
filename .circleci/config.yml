@@ -82,7 +82,6 @@ workflows:
           requires:
             - build
           filters:
-            branches:
               only: master
       - hold_production_deploy:
           type: approval
