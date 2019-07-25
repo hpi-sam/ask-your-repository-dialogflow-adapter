@@ -41,3 +41,9 @@ Add profile pages. Ref #41
 4. Add more commits
 5. If our definition of done is met: rebase your branch to the curent state of the master  
 (`git fetch` and then: `git rebase -i origin/master`) and merge with option: **Rebase and Merge**.
+
+
+## Major Dependencies
+
+We use the [actions on google library](https://www.npmjs.com/package/actions-on-google) to manage out interaction with Dialogflow.
+Our interaction with the backend Elija server is managed with simple axios requests found [here](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/blob/master/src/controller/RequestController.js). 
