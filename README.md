@@ -1,4 +1,4 @@
-# Tobito - Ask your Repository Dialogflow Adapter
+# Tobito &middot; Ask your Repository Dialogflow Adapter
 [![Coverage Status](https://coveralls.io/repos/github/hpi-sam/ask-your-repository-dialogflow-adapter/badge.svg?branch=master)](https://coveralls.io/github/hpi-sam/ask-your-repository-dialogflow-adapter?branch=master)
 
 This repo is part of the "Ask your Repository" Bachelor project containing the following repos:  
