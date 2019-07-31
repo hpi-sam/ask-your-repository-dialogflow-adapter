@@ -1,5 +1,12 @@
-# Tobito
+# Tobito - Ask your Repository Dialogflow Adapter
 [![Coverage Status](https://coveralls.io/repos/github/hpi-sam/ask-your-repository-dialogflow-adapter/badge.svg?branch=master)](https://coveralls.io/github/hpi-sam/ask-your-repository-dialogflow-adapter?branch=master)
+
+This repo is part of the "Ask your Repository" Bachelor project containing the following repos:  
+- [Elija - Ask your Repository Backend API](https://github.com/hpi-sam/ask-your-repository-api)  
+- [Jona - Ask your Repository Web Frontend](https://github.com/hpi-sam/ask-your-repository-web)  
+- [Tobito - Ask your Repository Dialogflow Adapter](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter)  
+- [Ask your Repository Docker Deployment](https://github.com/hpi-sam/ask-your-repository-docker)  
+
 ## Setup
 1. Install YARN: https://yarnpkg.com/lang/en/docs/install/
 2. Clone the repository: `git clone https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter.git`
