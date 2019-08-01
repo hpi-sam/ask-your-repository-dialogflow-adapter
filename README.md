@@ -54,3 +54,6 @@ Add profile pages. Ref #41
 
 We use the [actions on google library](https://www.npmjs.com/package/actions-on-google) to manage out interaction with Dialogflow.
 Our interaction with the backend Elija server is managed with simple axios requests found [here](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/blob/master/src/controller/RequestController.js). 
+
+## License
+This project is licensed under the terms of the MIT license.
