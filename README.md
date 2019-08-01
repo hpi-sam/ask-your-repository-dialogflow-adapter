@@ -30,30 +30,14 @@ The most important one is `yarn start`. This basically executes everything you c
 If you want to only do one of the above you can use: `yarn build`, `yarn serve`, `yarn test`, `yarn lint`, `yarn flow` respectively.  
 For test and lint the commands `yarn tdd` and `yarn ldd` start a watcher to run them automatically on file change. `yarn build` and `yarn serve` are always running with a watcher.
 
-## Developer (git) Workflow
-
-1. When you start working on a new feature. Create a new branch like this: `git checkout -b <issuenumber>/description-here` example: `git checkout -b 3/add-readme`.
-2. Add your changes with **small/'atomic' commits**. You commit messages should complete the sentence: **"When applied this commit will..."**, start with a **captial letter** and end with a **dot and reference** their issue. They should also **not surpass 72 symbols** to still be displayed inline on github.
-If you need more lines (should not be necessary with atomic commits but sometimes it happens). Make the first line a concise conclusion, with the dot and reference. And add more description in following lines.  
-Examples: "When applied this commit will" `Add a signup button to the main page. Ref #24` , `Remove the ugly icon on profiles. Ref #55`  
-Multiline example:  
-```
-Add profile pages. Ref #41  
-- Add path to profile /:user/profile
-- Add profile icons
-- Add fancy dashboard about user actions:
-- Displays status messages, follows and eaten cookies
-```
-3. Open a PR on github and add reviewers
-4. Add more commits
-5. If our definition of done is met: rebase your branch to the curent state of the master  
-(`git fetch` and then: `git rebase -i origin/master`) and merge with option: **Rebase and Merge**.
-
-
 ## Major Dependencies
 
 We use the [actions on google library](https://www.npmjs.com/package/actions-on-google) to manage out interaction with Dialogflow.
 Our interaction with the backend Elija server is managed with simple axios requests found [here](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/blob/master/src/controller/RequestController.js). 
+
+## Documentation
+
+More documentation can be found in the repositories [Wiki](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/wiki)
 
 ## License
 This project is licensed under the terms of the MIT license.
