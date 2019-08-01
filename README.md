@@ -37,7 +37,7 @@ Our interaction with the backend Elija server is managed with simple axios reque
 
 ## Documentation
 
-Further documentation can be found in the [wiki](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/wiki)
+Further documentation can be found in the [Wiki](https://github.com/hpi-sam/ask-your-repository-dialogflow-adapter/wiki).
 
 ## License
 This project is licensed under the terms of the MIT license.
