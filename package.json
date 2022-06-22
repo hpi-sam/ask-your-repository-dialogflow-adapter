@@ -22,7 +22,7 @@
     "@babel/runtime": "^7.4.4",
     "actions-on-google": "^2.4.1",
     "adm-zip": "^0.4.13",
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "datejs": "^1.0.0-rc3",
     "dialogflow": "^0.8.2",
